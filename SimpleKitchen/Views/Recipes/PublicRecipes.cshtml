@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SimpleKitchen.Models.Recipe>
+
+@{
+    ViewBag.Title = "Public Recipes";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("My Recipes", "Index")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RecipeName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecipeName)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "PublicRecipeDetails", new { id = item.RecipeId })
+            </td>
+        </tr>
+    }
+
+</table>
