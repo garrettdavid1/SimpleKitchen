@@ -8,5 +8,6 @@ namespace SimpleKitchen.Models
 {
     public class SimpleKitchenDevDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
     {
+        
     }
 }

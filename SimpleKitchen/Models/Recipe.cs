@@ -19,8 +19,8 @@ namespace SimpleKitchen.Models
         [Display(Name = "Public Recipe?")]
         public bool IsPublic { get; set; }
         public string OwnerId { get; set; }
-        //[Timestamp]
-        //public byte[] RowVersion { get; set; }
+        public virtual ApplicationUser Owner { get; set; }
+        public virtual List<CookBook> CookBooksContainingRecipe { get; set; }
         public Recipe()
         {
 

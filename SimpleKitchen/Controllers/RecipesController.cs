@@ -34,8 +34,10 @@ namespace SimpleKitchen.Controllers
 
         public ActionResult PublicRecipes()
         {
+            string userIdValue = new CurrentUserIdRetriever()
+                .GetUserId(User.Identity as ClaimsIdentity);
             var recipes = repository.GetAll()
-                .Where(x => x.IsPublic == true);
+                .Where(x => x.IsPublic == true && x.OwnerId != userIdValue);
             return View(recipes);
         }
 

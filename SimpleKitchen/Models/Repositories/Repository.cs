@@ -34,6 +34,11 @@ namespace SimpleKitchen.Models.Repositories
             return await DbSet.ToListAsync();
         }
 
+        public T Get(int id)
+        {
+            return DbSet.Find(id);
+        }
+
         public async Task<T> GetAsync(int id)
         {
             return await DbSet.FindAsync(id);

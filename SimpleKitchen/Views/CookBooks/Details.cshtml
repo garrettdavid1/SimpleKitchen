@@ -1,0 +1,42 @@
+﻿@model SimpleKitchen.Models.CookBook
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CookBook</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CookBookName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CookBookName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CookBookDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CookBookDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CookBookId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
