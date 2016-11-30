@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SimpleKitchen.Models;
+using System.Collections.Generic;
 
 namespace SimpleKitchen.Controllers
 {
@@ -151,7 +152,15 @@ namespace SimpleKitchen.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+                ApplicationUser user = new ApplicationUser()
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    UserCookBooks = new List<CookBook>() { new CookBook() {
+                        CookBookName = "My Recipes",
+                        CookBookDescription = "My Recipes"
+                    }}
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

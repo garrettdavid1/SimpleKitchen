@@ -65,6 +65,7 @@ namespace SimpleKitchen.Controllers
         // GET: Recipes/Create
         public ActionResult Create()
         {
+            ViewBag.CookBookNames = new UserCookBookRetriever().GetUserCookBookNames(User.Identity as ClaimsIdentity);
             return View();
         }
 
@@ -73,14 +74,12 @@ namespace SimpleKitchen.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "RecipeName,Ingredients,Instructions,IsPublic")] RecipesCreateViewModel viewModel)
+        public async Task<ActionResult> Create([Bind(Include = "RecipeName,Ingredients,Instructions,IsPublic,CookBookName")] RecipesCreateViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                Recipe recipe = new Recipe(viewModel, new CurrentUserIdRetriever()
-                .GetUserId(User.Identity as ClaimsIdentity));
-                repository.Add(recipe);
-                await repository.SaveChangesAsync();
+                await new NewRecipeHandler()
+                    .CreateAndSaveRecipe(viewModel, User.Identity as ClaimsIdentity);
                 return RedirectToAction("Index");
             }
 

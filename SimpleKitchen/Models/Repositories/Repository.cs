@@ -10,7 +10,7 @@ namespace SimpleKitchen.Models.Repositories
     public class Repository<T> where T: class
     {
         private bool disposed = false;
-        ApplicationDbContext context;
+        public ApplicationDbContext context;
         protected DbSet<T> DbSet;
 
         public Repository()
@@ -58,7 +58,6 @@ namespace SimpleKitchen.Models.Repositories
         {
             return await context.SaveChangesAsync();
         }
-
         public void Dispose()
         {
             if (!disposed)

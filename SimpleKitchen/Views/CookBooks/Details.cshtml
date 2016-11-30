@@ -1,13 +1,13 @@
 ﻿@model SimpleKitchen.Models.CookBook
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.CookBookName;
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
-    <h4>CookBook</h4>
+    <h4>Details</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -33,7 +33,17 @@
         <dd>
             @Html.DisplayFor(model => model.CookBookDescription)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.Recipes)
+        </dt>
+        @foreach (var recipe in Model.Recipes)
+        {
+            <dd>
+                @recipe.RecipeName
+                @Html.ActionLink("Edit", "Edit", "Recipes", new { id = recipe.RecipeId }, new { id = recipe.RecipeId }) |
+                @Html.ActionLink("Details", "Details", "Recipes", new { id = recipe.RecipeId }, new { id = recipe.RecipeId })
+            </dd>
+        }
     </dl>
 </div>
 <p>

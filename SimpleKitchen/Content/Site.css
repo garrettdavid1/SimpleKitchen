@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: tan;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +22,14 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.jumbotron {
+    font-style: italic;
+    -webkit-text-stroke: 1px black;
+    background-image: url(https://ferrebeekeeper.files.wordpress.com/2012/11/cornucopia-fruit.jpg);
+    background-size: cover;
+    background-position-y: bottom;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
