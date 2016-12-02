@@ -22,8 +22,6 @@ namespace SimpleKitchen.Models.ViewModels
         [Display(Name = "Public Recipe?")]
         public bool IsPublic { get; set; }
         public string OwnerId { get; set; }
-        //[Timestamp]
-        //public byte[] RowVersion { get; set; }
         public RecipesEditViewModel()
         {
 

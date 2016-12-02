@@ -20,6 +20,8 @@ namespace SimpleKitchen.Models.ViewModels
         [Required]
         [Display(Name = "Public Recipe?")]
         public bool IsPublic { get; set; }
+        [Required]
+        [Display(Name = "Select a CookBook")]
         public string CookBookName { get; set; }
         public RecipesCreateViewModel()
         {

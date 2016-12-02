@@ -70,15 +70,13 @@ namespace SimpleKitchen.Controllers
         }
 
         // POST: Recipes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "RecipeName,Ingredients,Instructions,IsPublic,CookBookName")] RecipesCreateViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                await new NewRecipeHandler()
+                await new RecipeHandler()
                     .CreateAndSaveRecipe(viewModel, User.Identity as ClaimsIdentity);
                 return RedirectToAction("Index");
             }

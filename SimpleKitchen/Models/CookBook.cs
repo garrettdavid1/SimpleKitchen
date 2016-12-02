@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleKitchen.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +14,16 @@ namespace SimpleKitchen.Models
         public virtual List<Recipe> Recipes { get; set; }
         public string OwnerId { get; set; }
         public virtual ApplicationUser Owner { get; set; }
+        public CookBook()
+        {
+
+        }
+
+        public CookBook(CookBooksCreateViewModel viewModel, string ownerId)
+        {
+            CookBookName = viewModel.CookBookName;
+            CookBookDescription = viewModel.CookBookDescription;
+            OwnerId = ownerId;
+        }
     }
 }

@@ -9,10 +9,10 @@ using System.Web;
 
 namespace SimpleKitchen.Models
 {
-    public class NewRecipeHandler
+    public class RecipeHandler
     {
         RecipeRepository repository;
-        public NewRecipeHandler()
+        public RecipeHandler()
         {
             repository = new RecipeRepository();
         }
