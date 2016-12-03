@@ -1,4 +1,5 @@
-﻿using SimpleKitchen.Models.Repositories;
+﻿using SimpleKitchen.Models.Data_Access;
+using SimpleKitchen.Models.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,8 @@ using System.Web;
 
 namespace SimpleKitchen.Models
 {
-    public class UserCookBookRetriever
+    public class CookBookRetriever : RepositoryInstantiator<CookBook>
     {
-        CookBookRepository repository = new CookBookRepository();
         public IEnumerable<string> GetUserCookBookNames(ClaimsIdentity identity)
         {
             string userId = new CurrentUserIdRetriever().GetUserId(identity);

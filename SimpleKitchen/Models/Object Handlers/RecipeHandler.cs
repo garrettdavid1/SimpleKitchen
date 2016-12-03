@@ -19,7 +19,7 @@ namespace SimpleKitchen.Models
 
         public async Task<int> CreateAndSaveRecipe(RecipesCreateViewModel viewModel, ClaimsIdentity identity)
         {
-            CookBook selectedCookBook = new UserCookBookRetriever()
+            CookBook selectedCookBook = new CookBookRetriever()
                     .GetCookBookForNewRecipe(identity, viewModel.CookBookName);
             Recipe recipe = new Recipe(viewModel,
                 new CurrentUserIdRetriever().GetUserId(identity),

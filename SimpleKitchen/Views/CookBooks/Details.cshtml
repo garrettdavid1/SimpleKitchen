@@ -17,14 +17,15 @@
         <dd>
             @Html.DisplayFor(model => model.CookBookName)
         </dd>
+        @if(!String.IsNullOrEmpty(Model.CookBookDescription)){ 
+            <dt>
+                @Html.DisplayNameFor(model => model.CookBookDescription)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CookBookDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CookBookDescription)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CookBookDescription)
+            </dd>
+        }
         <dt>
             @Html.DisplayNameFor(model => model.Recipes)
         </dt>

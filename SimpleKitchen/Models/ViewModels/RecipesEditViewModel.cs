@@ -35,7 +35,6 @@ namespace SimpleKitchen.Models.ViewModels
             Instructions = recipe.Instructions;
             IsPublic = recipe.IsPublic;
             OwnerId = recipe.OwnerId;
-            //RowVersion = recipe.RowVersion;
         }
     }
 }
