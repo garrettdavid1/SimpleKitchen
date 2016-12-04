@@ -27,7 +27,7 @@ namespace SimpleKitchen.Controllers
         // GET: CookBooks
         public async Task<ActionResult> Index()
         {
-            return View(await repository.GetUserCookBooksWithEagerLoadedObjects(User.Identity as ClaimsIdentity));
+            return View(await repository.GetUserCookBooksWithEagerLoadedObjectsAsync(User.Identity as ClaimsIdentity));
         }
 
         // GET: CookBooks/Details/5
@@ -64,7 +64,7 @@ namespace SimpleKitchen.Controllers
         // GET: CookBooks/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            CookBooksEditViewModel viewModel = new CookBooksEditViewModel(await repository.GetAsync(id));
+            CookBooksEditViewModel viewModel = new CookBooksEditViewModel(await repository.GetCookBookWithEagerLoadedObjectsAsync(id));
             if (viewModel == null)
             {
                 return HttpNotFound();
@@ -106,7 +106,7 @@ namespace SimpleKitchen.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> RemoveRecipe(int cookBookId, int recipeId)
+        public async Task<ActionResult> RemoveRecipeFromCookBook(int cookBookId, int recipeId)
         {
             await new CookBookHandler().RemoveRecipeFromCookBookAndSave(cookBookId, recipeId);
             return RedirectToAction("Edit", new { id = cookBookId });

@@ -3,66 +3,93 @@
 @{
     ViewBag.Title = "Edit";
 }
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="~/Content/CookBooksEditScript.js"></script>
+    <link href="~/Content/CookBooksEdit.css" rel="stylesheet" />
+</head>
 
-<h2>Edit</h2>
+<body>
+    <div class="contain-fluid">
+        <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>CookBook</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(o => o.OwnerId);
-        @Html.HiddenFor(model => model.CookBookId)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CookBookName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CookBookName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CookBookName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <div class="form-horizontal">
+                <h4>CookBook</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(o => o.OwnerId);
+                @Html.HiddenFor(model => model.CookBookId)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CookBookDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CookBookDescription, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CookBookDescription, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Recipes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @foreach (var recipe in Model.Recipes)
-                {
-                    <div>
-                        @recipe.RecipeName
-                        @Html.ActionLink("Edit", "Edit", "Recipes", new { id = recipe.RecipeId }, new { id = recipe.RecipeId }) |
-                        @Html.ActionLink("Details", "Details", "Recipes", new { id = recipe.RecipeId }, new { id = recipe.RecipeId }) |
-                        @Html.ActionLink("Remove", "RemoveRecipe", "CookBooks",
-                            new { cookBookId = Model.CookBookId, recipeId = recipe.RecipeId },
-                            new { id = recipe.RecipeId })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CookBookName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CookBookName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CookBookName, "", new { @class = "text-danger" })
                     </div>
-                }
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CookBookDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CookBookDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CookBookDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Recipes, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @foreach (var recipe in Model.Recipes)
+                        {
+                            <div class="row">
+                                <div class="col-lg-2">@recipe.RecipeName</div>
+                                    <div class="col-lg-4">
+                                        @Html.ActionLink("Edit", "Edit", "Recipes", new { id = recipe.RecipeId }, new { @class = recipe.RecipeId }) |
+                                        @Html.ActionLink("Details", "Details", "Recipes", new { id = recipe.RecipeId }, new { @class = recipe.RecipeId }) |
+                                        @if (recipe.CookBooksContainingRecipe.Count == 1)
+                                        {
+                                                <a class="pointer-cursor remove-recipe" id="@recipe.RecipeId.ToString()">Remove</a>
+                                                <p class="text-danger hidden delete-message">Removing this recipe will delete it permanently. Continue?</p>
+                                                @Html.ActionLink("Yes", "Delete", "Recipes",
+                                                        new { id = recipe.RecipeId },
+                                                        new { @class = "confirm-delete hidden" })
+                                                <a class="hidden pointer-cursor decline-delete">No</a>
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("Remove", "RemoveRecipeFromCookBook", "CookBooks",
+                                            new { cookBookId = Model.CookBookId, recipeId = recipe.RecipeId },
+                                            new { recipe.RecipeId })
+                                        }
+                                    </div>
+                                </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
             </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+</body>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+

@@ -7,7 +7,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
@@ -27,7 +27,7 @@
             @Html.LabelFor(model => model.CookBookName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.CookBookName, new SelectList(ViewBag.CookBookNames),
-                "Select CookBook", new { @class = "form-control" })
+                    new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CookBookName, "", new { @class = "text-danger" })
             </div>
         </div>

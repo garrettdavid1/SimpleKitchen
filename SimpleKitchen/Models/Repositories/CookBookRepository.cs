@@ -10,7 +10,7 @@ namespace SimpleKitchen.Models.Repositories
 {
     public class CookBookRepository : Repository<CookBook>
     {
-        public async Task<List<CookBook>> GetUserCookBooksWithEagerLoadedObjects(ClaimsIdentity identity)
+        public async Task<List<CookBook>> GetUserCookBooksWithEagerLoadedObjectsAsync(ClaimsIdentity identity)
         {
              string currentUserId = new CurrentUserIdRetriever().GetUserId(identity);
             return await context
@@ -19,6 +19,16 @@ namespace SimpleKitchen.Models.Repositories
                 .Include(r => r.Recipes)
                 .Include(o => o.Owner)
                 .ToListAsync();
+        }
+
+        public async Task<CookBook> GetCookBookWithEagerLoadedObjectsAsync(int id)
+        {
+            return await context
+                .CookBooks
+                .Where(i => i.CookBookId == id)
+                .Include(r => r.Recipes)
+                .Include(o => o.Owner)
+                .SingleAsync();
         }
     }
 }
