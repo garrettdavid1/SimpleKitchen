@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Simple Kitchen</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="~/Scripts/Site.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -23,9 +25,9 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Personal Recipes", "Index", "Recipes")</li>
                     <li>@Html.ActionLink("Public Recipes", "PublicRecipes", "Recipes")</li>
-                    <li>@Html.ActionLink("My Bookshelf", "Index", "CookBooks")</li>
+                    <li  class="requires-authentication">@Html.ActionLink("Personal Recipes", "Index", "Recipes")</li>
+                    <li class="requires-authentication">@Html.ActionLink("My Bookshelf", "Index", "CookBooks")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

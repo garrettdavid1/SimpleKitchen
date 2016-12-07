@@ -23,14 +23,12 @@ namespace SimpleKitchen.Controllers
         {
             repository = new CookBookRepository();
         }
-
-        // GET: CookBooks
+        
         public async Task<ActionResult> Index()
         {
             return View(await repository.GetUserCookBooksWithEagerLoadedObjectsAsync(User.Identity as ClaimsIdentity));
         }
-
-        // GET: CookBooks/Details/5
+        
         [AllowAnonymous]
         public async Task<ActionResult> Details(int id)
         {
@@ -41,14 +39,12 @@ namespace SimpleKitchen.Controllers
             }
             return View(cookBook);
         }
-
-        // GET: CookBooks/Create
+        
         public ActionResult Create()
         {
             return View();
         }
-
-        // POST: CookBooks/Create
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "CookBookName,CookBookDescription")] CookBooksCreateViewModel viewModel)
@@ -60,8 +56,7 @@ namespace SimpleKitchen.Controllers
             }
             return View(viewModel);
         }
-
-        // GET: CookBooks/Edit/5
+        
         public async Task<ActionResult> Edit(int id)
         {
             CookBooksEditViewModel viewModel = new CookBooksEditViewModel(await repository.GetCookBookWithEagerLoadedObjectsAsync(id));
@@ -72,7 +67,6 @@ namespace SimpleKitchen.Controllers
             return View(viewModel);
         }
 
-        // POST: CookBooks/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "CookBookId,CookBookName,CookBookDescription,OwnerId")] CookBooksEditViewModel viewModel)
@@ -84,8 +78,7 @@ namespace SimpleKitchen.Controllers
             }
             return View(viewModel);
         }
-
-        // GET: CookBooks/Delete/5
+        
         public async Task<ActionResult> Delete(int id)
         {
             CookBook cookBook = await repository.GetAsync(id);
@@ -95,8 +88,7 @@ namespace SimpleKitchen.Controllers
             }
             return View(cookBook);
         }
-
-        // POST: CookBooks/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

@@ -154,7 +154,7 @@ namespace SimpleKitchen.Controllers
             {
                 ApplicationUser user = new ApplicationUser()
                 {
-                    UserName = model.Email,
+                    UserName = model.UserName,
                     Email = model.Email,
                     UserCookBooks = new List<CookBook>() { new CookBook() {
                         CookBookName = "My Recipes",

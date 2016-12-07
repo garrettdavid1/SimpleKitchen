@@ -32,6 +32,7 @@ namespace SimpleKitchen.Controllers
             return View(recipes);
         }
 
+        [AllowAnonymous]
         public ActionResult PublicRecipes()
         {
             string userIdValue = new CurrentUserIdRetriever()
@@ -40,7 +41,7 @@ namespace SimpleKitchen.Controllers
                 .Where(x => x.IsPublic == true && x.OwnerId != userIdValue);
             return View(recipes);
         }
-
+        [AllowAnonymous]
         public async Task<ActionResult> PublicRecipeDetails(int id)
         {
             Recipe recipe = await repository.GetAsync(id);
