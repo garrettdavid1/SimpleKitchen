@@ -69,7 +69,7 @@ namespace SimpleKitchen.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CookBookId,CookBookName,CookBookDescription,OwnerId")] CookBooksEditViewModel viewModel)
+        public async Task<ActionResult> Edit([Bind(Include = "CookBookId,CookBookName,CookBookDescription,OwnerId,IsDeletable")] CookBooksEditViewModel viewModel)
         {
             if (ModelState.IsValid)
             {

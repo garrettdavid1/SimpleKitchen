@@ -11,6 +11,7 @@ namespace SimpleKitchen.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public string PublicName { get; set; }
         public virtual List<Recipe> UserRecipes { get; set; }
         public virtual List<CookBook> UserCookBooks { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

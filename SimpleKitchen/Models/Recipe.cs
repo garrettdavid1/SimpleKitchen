@@ -21,7 +21,7 @@ namespace SimpleKitchen.Models
         public string OwnerId { get; set; }
         public virtual ApplicationUser Owner { get; set; }
         public virtual List<CookBook> CookBooksContainingRecipe { get; set; } = new List<CookBook>();
-            
+        
         public Recipe()
         {
 

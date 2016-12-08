@@ -38,7 +38,9 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.CookBookId }) |
             @Html.ActionLink("Details", "Details", new { id = item.CookBookId }) |
+            @if(item.IsDeletable) {
             @Html.ActionLink("Delete", "Delete", new { id = item.CookBookId })
+            }
         </td>
     </tr>
 }

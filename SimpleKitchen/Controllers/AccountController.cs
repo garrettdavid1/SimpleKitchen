@@ -154,14 +154,25 @@ namespace SimpleKitchen.Controllers
             {
                 ApplicationUser user = new ApplicationUser()
                 {
-                    UserName = model.UserName,
+                    PublicName = model.PublicName,
+                    UserName = model.Email,
                     Email = model.Email,
-                    UserCookBooks = new List<CookBook>() { new CookBook() {
-                        CookBookName = "My Recipes",
-                        CookBookDescription = "My Recipes"
-                    }}
+                    UserCookBooks = new List<CookBook>()
+                    {
+                        new CookBook() {
+                            CookBookName = "My Recipes",
+                            CookBookDescription = "My Recipes",
+                            IsDeletable = false
+                    },
+                        new CookBook() {
+                            CookBookName = "Saved Recipes",
+                            CookBookDescription = "Saved Recipes",
+                            IsDeletable = false
+                        }
+                    }
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                await UserManager.AddClaimAsync(user.Id, new Claim("PublicName", user.PublicName));
                 if (result.Succeeded)
                 {
 

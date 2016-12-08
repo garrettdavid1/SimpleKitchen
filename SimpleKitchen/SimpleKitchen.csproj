@@ -189,6 +189,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Capitalizer.cs" />
     <Compile Include="Models\CookBook.cs" />
     <Compile Include="Models\Data Access\CurrentUserIdRetriever.cs" />
     <Compile Include="Models\Data Access\RepositoryInstantiator.cs" />

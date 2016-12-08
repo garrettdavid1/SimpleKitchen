@@ -16,6 +16,7 @@ namespace SimpleKitchen.Models
         public string CookBookDescription { get; set; }
         public virtual List<Recipe> Recipes { get; set; }
         public string OwnerId { get; set; }
+        public bool IsDeletable { get; set; }
         public virtual ApplicationUser Owner { get; set; }
         public CookBook()
         {
@@ -26,6 +27,7 @@ namespace SimpleKitchen.Models
         {
             CookBookName = viewModel.CookBookName;
             CookBookDescription = viewModel.CookBookDescription;
+            IsDeletable = true;
             OwnerId = ownerId;
         }
     }

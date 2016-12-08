@@ -15,6 +15,7 @@ namespace SimpleKitchen.Models.ViewModels
         [Display(Name = "Description")]
         public string CookBookDescription { get; set; }
         public List<Recipe> Recipes = new List<Recipe>();
+        public bool IsDeletable { get; set; }
         public string OwnerId { get; set; }
         public CookBooksEditViewModel()
         {
@@ -27,6 +28,7 @@ namespace SimpleKitchen.Models.ViewModels
             CookBookDescription = cookBook.CookBookDescription;
             Recipes = cookBook.Recipes;
             OwnerId = cookBook.OwnerId;
+            IsDeletable = cookBook.IsDeletable;
         }
     }
 }
