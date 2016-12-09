@@ -1,0 +1,23 @@
+﻿.container-fluid{
+}
+
+.individual-recipe{
+    border: dashed black 2px;
+    background: tan;
+    border-spacing: 10px;
+}
+
+.cookbook-jumbotron{
+    font-style: italic;
+    -webkit-text-stroke: 1px black;
+    background-size: cover;
+    background-position-y: bottom;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.col-centered{
+    margin: 5px auto;
+}

@@ -3,46 +3,55 @@
 @{
     ViewBag.Title = "My BookShelf";
 }
+<link href="~/Content/CookBooksIndex.css" rel="stylesheet" />
 
 <h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CookBookName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CookBookDescription)
-        </th>
-        <th></th>
-    </tr>
+<div class="container-fluid index-container">
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
+    @foreach (var cookbook in Model)
+    {
+        <div class="row cookbook-container">
+            <div class="jumbotron cookbook-jumbotron">
+                <h1>@cookbook.CookBookName</h1>
+                <h3>@cookbook.CookBookDescription</h3>
+            </div>
+            <div class="row recipe-container">
+                @foreach (var recipe in cookbook.Recipes)
+                {
+                    <div class="col-sm-2 col-xs-3 individual-recipe col-centered">
+                        <div class="row recipe-image">
+                            <p class="text-center">Image Goes Here</p>
+                        </div>
+                        <hr />
+                        <div class="row recipe-name">
+                            <p class="text-center">@recipe.RecipeName</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+@*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        @Html.DisplayNameFor(model => model.CookBookName)
+        @Html.DisplayNameFor(model => model.CookBookDescription)
+
+        @foreach (var item in Model)
+            {
             @Html.DisplayFor(modelItem => item.CookBookName)
-        </td>
-        @if (!String.IsNullOrEmpty(item.CookBookDescription))
-        {
-            <td>
+            @if (!String.IsNullOrEmpty(item.CookBookDescription))
+                {
                 @Html.DisplayFor(modelItem => item.CookBookDescription)
-            </td>
-        } else
-        {
-            <td>No Description</td>
-        }
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.CookBookId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.CookBookId }) |
-            @if(item.IsDeletable) {
-            @Html.ActionLink("Delete", "Delete", new { id = item.CookBookId })
             }
-        </td>
-    </tr>
-}
-
-</table>
+            else
+                <p>{ No Description }</p>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CookBookId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CookBookId }) |
+        @if (item.IsDeletable)
+                {
+            @Html.ActionLink("Delete", "Delete", new { id = item.CookBookId })
+        }
+    </div>*@

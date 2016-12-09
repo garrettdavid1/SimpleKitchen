@@ -20,7 +20,7 @@ namespace SimpleKitchen.Models
         public virtual ApplicationUser Owner { get; set; }
         public CookBook()
         {
-
+            
         }
 
         public CookBook(CookBooksCreateViewModel viewModel, string ownerId)

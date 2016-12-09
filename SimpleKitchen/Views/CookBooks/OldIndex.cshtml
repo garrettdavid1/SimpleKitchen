@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SimpleKitchen.Models.CookBook>
+
+@{
+    ViewBag.Title = "My BookShelf";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CookBookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CookBookDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CookBookName)
+        </td>
+        @if (!String.IsNullOrEmpty(item.CookBookDescription))
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.CookBookDescription)
+            </td>
+        } else
+        {
+            <td>No Description</td>
+        }
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.CookBookId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.CookBookId }) |
+            @if(item.IsDeletable) {
+            @Html.ActionLink("Delete", "Delete", new { id = item.CookBookId })
+            }
+        </td>
+    </tr>
+}
+
+</table>
