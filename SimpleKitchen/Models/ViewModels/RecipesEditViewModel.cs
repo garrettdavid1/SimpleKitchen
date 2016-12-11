@@ -22,6 +22,7 @@ namespace SimpleKitchen.Models.ViewModels
         [Display(Name = "Public Recipe?")]
         public bool IsPublic { get; set; }
         public string OwnerId { get; set; }
+        public string ImageReference { get; set; }
         public RecipesEditViewModel()
         {
 
@@ -35,6 +36,7 @@ namespace SimpleKitchen.Models.ViewModels
             Instructions = recipe.Instructions;
             IsPublic = recipe.IsPublic;
             OwnerId = recipe.OwnerId;
+            ImageReference = recipe.ImageReference;
         }
     }
 }

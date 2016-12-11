@@ -1,10 +1,23 @@
-﻿.container-fluid{
+﻿hr {
+    border-color: gray;
 }
 
 .individual-recipe{
-    border: dashed black 2px;
-    background: tan;
     border-spacing: 10px;
+    border: 15px solid;
+    border-image: url(AppImages/RuggedBrown.jpg) 20%;
+    background-image: url(AppImages/CrumbledPaper.jpg);
+    display: block;
+    position: relative;
+    max-height: 244px;
+    height: 244px;
+}
+
+.recipe-image{
+    border: dashed 2px gray;
+    width: 95%;
+    font-size: 3em;
+    color: gray;
 }
 
 .cookbook-jumbotron{
@@ -12,12 +25,32 @@
     -webkit-text-stroke: 1px black;
     background-size: cover;
     background-position-y: bottom;
-    color: white;
+    color: sienna;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding-top: 1em;
     padding-bottom: 1em;
+    background-color: #fffae6;
+    border-top: #63331c 5px solid;
+    border-bottom: #63331c 5px solid;
+    background-image: url(http://iheartbackgrounds.weebly.com/uploads/1/7/4/2/17420453/2565398_orig.jpg);
 }
 
 .col-centered{
-    margin: 5px auto;
+    margin: auto;
+}
+
+.recipe-name{
+    border-spacing: 5px;
+    font-size: medium;
+    width: 100%;
+    max-height: 50px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-bottom: 65px;
+    margin-top: -30px;
+}
+
+.create-recipe-text{
+    font-size: x-large !important;
 }

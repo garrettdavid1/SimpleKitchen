@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "My BookShelf";
 }
+<script src="~/Scripts/CookBooksIndexScript.js"></script>
 <link href="~/Content/CookBooksIndex.css" rel="stylesheet" />
 
 <h2>@ViewBag.Title</h2>
@@ -12,46 +13,36 @@
     @foreach (var cookbook in Model)
     {
         <div class="row cookbook-container">
-            <div class="jumbotron cookbook-jumbotron">
+            <div class="btn btn-block jumbotron cookbook-jumbotron" id="@cookbook.CookBookId">
                 <h1>@cookbook.CookBookName</h1>
                 <h3>@cookbook.CookBookDescription</h3>
             </div>
-            <div class="row recipe-container">
+            <div class="row recipe-container hidden">
+                @if (cookbook.CookBookName != "Saved Recipes")
+                {
+                    <a class="col-md-3 col-sm-4 individual-recipe col-centered btn btn-default create-recipe" href="/Recipes/Create">
+                        <p class="recipe-text text-center create-recipe-text">Create New Recipe</p>
+                    </a>
+                }
                 @foreach (var recipe in cookbook.Recipes)
                 {
-                    <div class="col-sm-2 col-xs-3 individual-recipe col-centered">
-                        <div class="row recipe-image">
-                            <p class="text-center">Image Goes Here</p>
+                    <a class="col-md-3 col-sm-4 individual-recipe col-centered btn btn-default" href="/Recipes/Details/@recipe.RecipeId">
+                        <div class="row recipe-image col-centered">
+                            @if (recipe.ImageReference != null)
+                            {
+                                <img src=@recipe.ImageReference />
+                            }else { 
+                                <p class="text-center glyphicon glyphicon-camera"></p>
+                            }
                         </div>
                         <hr />
-                        <div class="row recipe-name">
-                            <p class="text-center">@recipe.RecipeName</p>
+                        <div class="row recipe-name col-centered">
+                            <p class="text-center recipe-text">@recipe.RecipeName</p>
                         </div>
-                    </div>
+                    </a>
                 }
+
             </div>
         </div>
     }
 </div>
-@*<p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
-        @Html.DisplayNameFor(model => model.CookBookName)
-        @Html.DisplayNameFor(model => model.CookBookDescription)
-
-        @foreach (var item in Model)
-            {
-            @Html.DisplayFor(modelItem => item.CookBookName)
-            @if (!String.IsNullOrEmpty(item.CookBookDescription))
-                {
-                @Html.DisplayFor(modelItem => item.CookBookDescription)
-            }
-            else
-                <p>{ No Description }</p>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CookBookId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.CookBookId }) |
-        @if (item.IsDeletable)
-                {
-            @Html.ActionLink("Delete", "Delete", new { id = item.CookBookId })
-        }
-    </div>*@

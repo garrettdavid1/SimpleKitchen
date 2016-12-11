@@ -73,13 +73,13 @@ namespace SimpleKitchen.Controllers
         // POST: Recipes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "RecipeName,Ingredients,Instructions,IsPublic,CookBookName")] RecipesCreateViewModel viewModel)
+        public async Task<ActionResult> Create([Bind(Include = "RecipeName,Ingredients,Instructions,IsPublic,CookBookName, ImageReference")] RecipesCreateViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
                 await new RecipeHandler()
                     .CreateAndSaveRecipe(viewModel, User.Identity as ClaimsIdentity);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "CookBooks");
             }
 
             return View(viewModel);
@@ -100,7 +100,7 @@ namespace SimpleKitchen.Controllers
         // POST: Recipes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "RecipeId,RecipeName,Ingredients,Instructions,IsPublic,OwnerId")] RecipesEditViewModel viewModel)
+        public async Task<ActionResult> Edit([Bind(Include = "RecipeId,RecipeName,Ingredients,Instructions,IsPublic,OwnerId,ImageReference")] RecipesEditViewModel viewModel)
         {
             
             if (ModelState.IsValid)
