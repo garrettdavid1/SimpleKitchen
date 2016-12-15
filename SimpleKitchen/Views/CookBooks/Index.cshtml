@@ -1,48 +1,67 @@
 ﻿@model IEnumerable<SimpleKitchen.Models.CookBook>
 
 @{
-    ViewBag.Title = "My BookShelf";
+    ViewBag.Title = "Recipes";
 }
 <script src="~/Scripts/CookBooksIndexScript.js"></script>
 <link href="~/Content/CookBooksIndex.css" rel="stylesheet" />
 
-<h2>@ViewBag.Title</h2>
+
 
 <div class="container-fluid index-container">
-
-    @foreach (var cookbook in Model)
-    {
         <div class="row cookbook-container">
-            <div class="btn btn-block jumbotron cookbook-jumbotron" id="@cookbook.CookBookId">
-                <h1>@cookbook.CookBookName</h1>
-                <h3>@cookbook.CookBookDescription</h3>
+            <div class="col-md-2 text-center cookbook-button-container flex-container">
+                <h2>Personal CookBooks</h2>
+                <hr />
+                <div row="cookbook-buttons">
+                    <div class="col-xs-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <button class="btn btn-block" id="show-all-recipes">Show All</button>
+                            </div>
+                            <div class="col-lg-6">
+                                <button class="btn btn-block" id="hide-all-recipes">Hide All</button>
+                            </div>
+                        </div>
+                        @foreach (var cookbook in Model)
+                        {
+                            <button class="btn btn-block cookbook-name-button" value="@cookbook.CookBookId.ToString()">@cookbook.CookBookName</button>
+                        }
+                    </div>
+                    <div class="col-xs-6 col-sm-12">
+                        <div class="row">
+                            <a class="col-centered btn btn-default create-recipe" href="/Recipes/Create">
+                                <p class="recipe-text text-center create-recipe-text">Create New Recipe</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row recipe-container hidden">
-                @if (cookbook.CookBookName != "Saved Recipes")
+            <div class="col-md-10 recipe-container">
+                <h2>@ViewBag.Title</h2>
+                <hr />
+                @foreach (var cookbook in Model)
                 {
-                    <a class="col-md-3 col-sm-4 individual-recipe col-centered btn btn-default create-recipe" href="/Recipes/Create">
-                        <p class="recipe-text text-center create-recipe-text">Create New Recipe</p>
-                    </a>
+                    foreach (var recipe in cookbook.Recipes)
+                    {
+                        <a class="col-md-3 col-sm-4 individual-recipe col-centered btn btn-default hidden cb-@cookbook.CookBookId.ToString()" href="/Recipes/Details/@recipe.RecipeId">
+                            <div class="row recipe-image col-centered">
+                                @if (recipe.ImageReference != null)
+                                {
+                                    <img src=@recipe.ImageReference />
+                                }
+                                else
+                                {
+                                    <p class="text-center glyphicon glyphicon-camera"></p>
+                                }
+                            </div>
+                            <hr />
+                            <div class="row recipe-name col-centered">
+                                <p class="text-center recipe-text">@recipe.RecipeName</p>
+                            </div>
+                        </a>
+                    }
                 }
-                @foreach (var recipe in cookbook.Recipes)
-                {
-                    <a class="col-md-3 col-sm-4 individual-recipe col-centered btn btn-default" href="/Recipes/Details/@recipe.RecipeId">
-                        <div class="row recipe-image col-centered">
-                            @if (recipe.ImageReference != null)
-                            {
-                                <img src=@recipe.ImageReference />
-                            }else { 
-                                <p class="text-center glyphicon glyphicon-camera"></p>
-                            }
-                        </div>
-                        <hr />
-                        <div class="row recipe-name col-centered">
-                            <p class="text-center recipe-text">@recipe.RecipeName</p>
-                        </div>
-                    </a>
-                }
-
             </div>
         </div>
-    }
 </div>

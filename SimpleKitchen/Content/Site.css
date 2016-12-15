@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: tan;
+    background-color: white;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -27,7 +27,7 @@ textarea {
 .home-jumbotron {
     font-style: italic;
     -webkit-text-stroke: 1px black;
-    background-image: url(https://ferrebeekeeper.files.wordpress.com/2012/11/cornucopia-fruit.jpg);
+    background-image: url(/Content/AppImages/FruitCornucopia.jpg);
     background-size: cover;
     background-position-y: bottom;
     color: white;
