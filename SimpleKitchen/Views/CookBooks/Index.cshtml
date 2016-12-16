@@ -10,58 +10,55 @@
 
 <div class="container-fluid index-container">
         <div class="row cookbook-container">
-            <div class="col-md-2 text-center cookbook-button-container flex-container">
-                <h2>Personal CookBooks</h2>
+            <div class="col-sm-3 col-md-2 text-center cookbook-button-container">
+                <h2>Cookbooks</h2>
                 <hr />
                 <div row="cookbook-buttons">
-                    <div class="col-xs-6 col-sm-12">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <button class="btn btn-block" id="show-all-recipes">Show All</button>
-                            </div>
-                            <div class="col-lg-6">
-                                <button class="btn btn-block" id="hide-all-recipes">Hide All</button>
-                            </div>
-                        </div>
+                    <div class="col-xs-6 col-sm-12 cookbook-button-wrapper">
+                                <button class="btn btn-block cookbook-name-button cb-button" id="show-all-recipes">Show All</button>
+                                <button class="btn btn-block cookbook-name-button btn-primary" id="hide-all-recipes">Hide All</button>
                         @foreach (var cookbook in Model)
                         {
-                            <button class="btn btn-block cookbook-name-button" value="@cookbook.CookBookId.ToString()">@cookbook.CookBookName</button>
+                            <button class="btn btn-block cookbook-name-button cb-button" value="@cookbook.CookBookId.ToString()">@cookbook.CookBookName</button>
                         }
+                        <hr class="button-divider"/>
                     </div>
-                    <div class="col-xs-6 col-sm-12">
-                        <div class="row">
-                            <a class="col-centered btn btn-default create-recipe" href="/Recipes/Create">
-                                <p class="recipe-text text-center create-recipe-text">Create New Recipe</p>
-                            </a>
-                        </div>
+                    <div class="col-xs-6 col-sm-12 create-recipe-container">
+                            <button class="btn btn-block create-button" onclick="window.location.href='/CookBooks/Create'">New Cookbook</button>
+                            <button class="btn btn-block create-button" onclick="window.location.href='/Recipes/Create'">New Recipe</button>
                     </div>
                 </div>
             </div>
-            <div class="col-md-10 recipe-container">
-                <h2>@ViewBag.Title</h2>
+            <div class="col-sm-9 col-md-10 recipe-container">
+                <h3>@ViewBag.Title</h3>
                 <hr />
-                @foreach (var cookbook in Model)
-                {
-                    foreach (var recipe in cookbook.Recipes)
+                <div class="row">
+                    @foreach (var cookbook in Model)
                     {
-                        <a class="col-md-3 col-sm-4 individual-recipe col-centered btn btn-default hidden cb-@cookbook.CookBookId.ToString()" href="/Recipes/Details/@recipe.RecipeId">
-                            <div class="row recipe-image col-centered">
-                                @if (recipe.ImageReference != null)
-                                {
-                                    <img src=@recipe.ImageReference />
-                                }
-                                else
-                                {
-                                    <p class="text-center glyphicon glyphicon-camera"></p>
-                                }
+                        foreach (var recipe in cookbook.Recipes)
+                        {
+                            <div class="col-xs-12 col-sm-4 col-md-3 individual-recipe-container cb-@cookbook.CookBookId.ToString() hidden">
+                                <div class="individual-recipe col-centered btn btn-default"
+                                     onclick="window.location.href='/Recipes/Details/@recipe.RecipeId'">
+                                    <div class="row recipe-image col-centered">
+                                        @if (recipe.ImageReference != null)
+                                        {
+                                            <img src=@recipe.ImageReference />
+                                        }
+                                        else
+                                        {
+                                            <p class="text-center glyphicon glyphicon-camera"></p>
+                                        }
+                                    </div>
+                                    <hr />
+                                    <div class="row recipe-name col-centered">
+                                        <p class="text-center recipe-text">@recipe.RecipeName</p>
+                                    </div>
+                                </div>
                             </div>
-                            <hr />
-                            <div class="row recipe-name col-centered">
-                                <p class="text-center recipe-text">@recipe.RecipeName</p>
-                            </div>
-                        </a>
+                        }
                     }
-                }
+                </div>
             </div>
         </div>
 </div>

@@ -110,7 +110,7 @@ namespace SimpleKitchen.Controllers
                     Recipe recipe = new Recipe(viewModel);
                     repository.Update(recipe);
                     await repository.SaveChangesAsync();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "CookBooks");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -139,7 +139,7 @@ namespace SimpleKitchen.Controllers
         {
             repository.Delete(id);
             await repository.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "CookBooks");
         }
 
         protected override void Dispose(bool disposing)

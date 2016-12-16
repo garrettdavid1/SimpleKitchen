@@ -23,11 +23,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="unnecessary-nav">@Html.ActionLink("About", "About", "Home")</li>
+                    <li class="unnecessary-nav">@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Public Recipes", "PublicRecipes", "Recipes")</li>
-                    <li  class="requires-authentication">@Html.ActionLink("Personal Recipes", "Index", "Recipes")</li>
-                    <li class="requires-authentication">@Html.ActionLink("My Bookshelf", "Index", "CookBooks")</li>
+                    <li class="requires-authentication">@Html.ActionLink("My CookBooks", "Index", "CookBooks")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
