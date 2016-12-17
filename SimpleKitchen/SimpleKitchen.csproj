@@ -197,6 +197,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Object Handlers\CookBookHandler.cs" />
+    <Compile Include="Models\Object Handlers\ImageHandler.cs" />
     <Compile Include="Models\Object Handlers\RecipeHandler.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\Repositories\CookBookRepository.cs" />

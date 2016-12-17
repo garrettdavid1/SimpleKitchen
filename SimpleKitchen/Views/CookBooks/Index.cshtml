@@ -23,7 +23,7 @@
                         }
                         <hr class="button-divider"/>
                     </div>
-                    <div class="col-xs-6 col-sm-12 create-recipe-container">
+                    <div class="col-xs-6 col-sm-12 create-recipe-container text-center">
                             <button class="btn btn-block create-button" onclick="window.location.href='/CookBooks/Create'">New Cookbook</button>
                             <button class="btn btn-block create-button" onclick="window.location.href='/Recipes/Create'">New Recipe</button>
                     </div>
@@ -37,22 +37,24 @@
                     {
                         foreach (var recipe in cookbook.Recipes)
                         {
-                            <div class="col-xs-12 col-sm-4 col-md-3 individual-recipe-container cb-@cookbook.CookBookId.ToString() hidden">
+                            <div class="col-xs-12 col-sm-6 individual-recipe-container cb-@cookbook.CookBookId.ToString() hidden">
                                 <div class="individual-recipe col-centered btn btn-default"
                                      onclick="window.location.href='/Recipes/Details/@recipe.RecipeId'">
-                                    <div class="row recipe-image col-centered">
                                         @if (recipe.ImageReference != null)
                                         {
-                                            <img src=@recipe.ImageReference />
+                                            <div class="recipe-image" style="background-image: url(@recipe.ImageReference)"></div>
                                         }
                                         else
                                         {
-                                            <p class="text-center glyphicon glyphicon-camera"></p>
+                                            <div class="row col-centered">
+                                                <div class="recipe-image-missing">
+                                                    <p class="glyphicon glyphicon-camera"></p>
+                                                </div>
+                                            </div>
                                         }
-                                    </div>
-                                    <hr />
-                                    <div class="row recipe-name col-centered">
-                                        <p class="text-center recipe-text">@recipe.RecipeName</p>
+                                    <hr class="recipe-image-name-divider"/>
+                                    <div class="row recipe-name">
+                                        <p class="recipe-text">@recipe.RecipeName</p>
                                     </div>
                                 </div>
                             </div>

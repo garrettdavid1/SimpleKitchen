@@ -23,6 +23,8 @@ namespace SimpleKitchen.Models.ViewModels
         public bool IsPublic { get; set; }
         public string OwnerId { get; set; }
         public string ImageReference { get; set; }
+        [Display(Name = "Upload a Photo")]
+        public HttpPostedFileBase UploadedFile { get; set; }
         public RecipesEditViewModel()
         {
 

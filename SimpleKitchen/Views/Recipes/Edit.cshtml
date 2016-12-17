@@ -7,7 +7,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Recipes", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -21,6 +21,15 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.RecipeId)
         @Html.HiddenFor(model => model.OwnerId)
+        @Html.HiddenFor(model => model.ImageReference)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadedFile, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="UploadedFile" asp-for="UploadedFile"/>
+                @Html.ValidationMessageFor(model => model.UploadedFile, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.RecipeName, htmlAttributes: new { @class = "control-label col-md-2" })
