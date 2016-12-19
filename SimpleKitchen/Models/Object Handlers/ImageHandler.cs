@@ -9,28 +9,36 @@ namespace SimpleKitchen.Models.Object_Handlers
     public class ImageHandler
     {
         public string SaveInitialImageAndGetReference(HttpPostedFileBase file)
-        {
-            if (file != null && file.ContentLength > 0)
-            {
-                string newFileName = Guid.NewGuid().ToString() + Path.GetFileName(file.FileName);
-                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/UserImages"),
-                                           newFileName);
-                file.SaveAs(path);
-                return ("/Content/UserImages/" + newFileName);
-            }
-            else return null;
+        { 
+            string FileName = RemoveSpaces(Path.GetFileName(file.FileName));
+            string newFileName = ConstructNewFileName(FileName);
+            string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/UserImages"),
+                                       newFileName);
+            file.SaveAs(path);
+            return ("/Content/UserImages/" + newFileName);
         }
 
         public string SaveEditedImageAndGetReference(string oldImageReference, HttpPostedFileBase file)
         {
-            if(!(Path.GetFileName(file.FileName) == oldImageReference.Substring(57))) {
-                    string newFileName = Guid.NewGuid().ToString() + Path.GetFileName(file.FileName);
+            string FileName = RemoveSpaces(Path.GetFileName(file.FileName));
+            if(!(FileName == oldImageReference.Substring(57))) {
+                    string newFileName = ConstructNewFileName(FileName);
                     string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/UserImages"),
                                            newFileName);
                     file.SaveAs(path);
                     return ("/Content/UserImages/" + newFileName);
             }
             else return oldImageReference;
+        }
+
+        public string RemoveSpaces(string fileName)
+        {
+            return fileName.Replace(' ', '-');
+        }
+
+        public string ConstructNewFileName(string oldFileName)
+        {
+            return (Guid.NewGuid() + "-" + oldFileName);
         }
     }
 }

@@ -194,6 +194,7 @@
     <Compile Include="Models\Data Access\CurrentUserIdRetriever.cs" />
     <Compile Include="Models\Data Access\RepositoryInstantiator.cs" />
     <Compile Include="Models\Data Access\RecipeRetriever.cs" />
+    <Compile Include="Models\EntitySorter.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Object Handlers\CookBookHandler.cs" />

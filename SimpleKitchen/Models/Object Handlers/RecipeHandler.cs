@@ -20,8 +20,11 @@ namespace SimpleKitchen.Models
 
         public async Task<int> CreateAndSaveRecipe(RecipesCreateViewModel viewModel, ClaimsIdentity identity)
         {
-            if(viewModel.UploadedFile != null) { 
-                viewModel.ImageReference = new ImageHandler().SaveInitialImageAndGetReference(viewModel.UploadedFile);
+            HttpPostedFileBase file = viewModel.UploadedFile;
+            if(UploadedFileExists(file)){
+                if (IsImage(file)) {
+                    viewModel.ImageReference = new ImageHandler().SaveInitialImageAndGetReference(viewModel.UploadedFile);
+                }
             }
             CookBook selectedCookBook = new CookBookRetriever()
                     .GetCookBookForNewRecipe(identity, viewModel.CookBookName);
@@ -36,17 +39,41 @@ namespace SimpleKitchen.Models
         {
             HttpPostedFileBase file = viewModel.UploadedFile;
             bool ImageRefExists = !(viewModel.ImageReference == null);
-            bool UploadedFileExists = (!(viewModel.UploadedFile == null) && viewModel.UploadedFile.ContentLength > 0);
-            if(!(ImageRefExists) && UploadedFileExists)//No existing ImageReference, new UploadedFile
+            if (UploadedFileExists(file))
             {
-                viewModel.ImageReference = new ImageHandler().SaveInitialImageAndGetReference(viewModel.UploadedFile);
-            } else if(ImageRefExists && UploadedFileExists)//Existing ImageReference, new UploadedFile
-            {
-                viewModel.ImageReference = new ImageHandler().SaveEditedImageAndGetReference(viewModel.ImageReference, viewModel.UploadedFile);
+                if (IsImage(file)) {
+                    if (!ImageRefExists) //No existing ImageReference
+                    {
+                        viewModel.ImageReference = new ImageHandler()
+                            .SaveInitialImageAndGetReference(viewModel.UploadedFile);
+                    }
+                    else //Existing ImageReference
+                    {
+                        viewModel.ImageReference = new ImageHandler()
+                            .SaveEditedImageAndGetReference(viewModel.ImageReference, 
+                            viewModel.UploadedFile);
+                    }
+                }
             }
             Recipe recipe = new Recipe(viewModel);
             repository.Update(recipe);
             return await repository.SaveChangesAsync();
+        }
+
+        public bool UploadedFileExists(HttpPostedFileBase file)
+        {
+            return (!(file == null) && file.ContentLength > 0);
+        }
+
+        public bool IsImage(HttpPostedFileBase file)
+        {
+            string ContentType = file.ContentType.ToLower();
+            return (ContentType == "image/jpg" ||
+                     ContentType == "image/jpeg" ||
+                     ContentType == "image/pjpeg" ||
+                     ContentType == "image/gif" ||
+                     ContentType == "image/x-png" ||
+                     ContentType == "image/png");
         }
     }
 }

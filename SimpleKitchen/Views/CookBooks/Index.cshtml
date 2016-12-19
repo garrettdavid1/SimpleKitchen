@@ -9,58 +9,82 @@
 
 
 <div class="container-fluid index-container">
-        <div class="row cookbook-container">
-            <div class="col-sm-3 col-md-2 text-center cookbook-button-container">
-                <h2>Cookbooks</h2>
-                <hr />
-                <div row="cookbook-buttons">
-                    <div class="col-xs-6 col-sm-12 cookbook-button-wrapper">
-                                <button class="btn btn-block cookbook-name-button cb-button" id="show-all-recipes">Show All</button>
-                                <button class="btn btn-block cookbook-name-button btn-primary" id="hide-all-recipes">Hide All</button>
-                        @foreach (var cookbook in Model)
-                        {
-                            <button class="btn btn-block cookbook-name-button cb-button" value="@cookbook.CookBookId.ToString()">@cookbook.CookBookName</button>
-                        }
-                        <hr class="button-divider"/>
-                    </div>
-                    <div class="col-xs-6 col-sm-12 create-recipe-container text-center">
-                            <button class="btn btn-block create-button" onclick="window.location.href='/CookBooks/Create'">New Cookbook</button>
-                            <button class="btn btn-block create-button" onclick="window.location.href='/Recipes/Create'">New Recipe</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-9 col-md-10 recipe-container">
-                <h3>@ViewBag.Title</h3>
-                <hr />
-                <div class="row">
+    <div class="row cookbook-container">
+        <!--CookBook Show/Hide Button Container-->
+        <div class="col-sm-3 col-md-2 text-center cookbook-button-container">
+            <h2>Cookbooks</h2>
+            <hr />
+            <div row="cookbook-buttons">
+                <div class="col-xs-6 col-sm-12 cookbook-button-wrapper">
+                    <!--Show/Hide All Buttons-->
+                    <button class="btn btn-block cookbook-name-button cb-button" id="show-all-recipes">Show All</button>
+                    <button class="btn btn-block cookbook-name-button btn-primary" id="hide-all-recipes">Hide All</button>
+                    <!--CookBook Display Buttons-->
                     @foreach (var cookbook in Model)
                     {
-                        foreach (var recipe in cookbook.Recipes)
-                        {
-                            <div class="col-xs-12 col-sm-6 individual-recipe-container cb-@cookbook.CookBookId.ToString() hidden">
-                                <div class="individual-recipe col-centered btn btn-default"
-                                     onclick="window.location.href='/Recipes/Details/@recipe.RecipeId'">
-                                        @if (recipe.ImageReference != null)
-                                        {
-                                            <div class="recipe-image" style="background-image: url(@recipe.ImageReference)"></div>
-                                        }
-                                        else
-                                        {
-                                            <div class="row col-centered">
-                                                <div class="recipe-image-missing">
-                                                    <p class="glyphicon glyphicon-camera"></p>
-                                                </div>
-                                            </div>
-                                        }
-                                    <hr class="recipe-image-name-divider"/>
-                                    <div class="row recipe-name">
-                                        <p class="recipe-text">@recipe.RecipeName</p>
-                                    </div>
-                                </div>
-                            </div>
-                        }
+                        <button class="btn btn-block cookbook-name-button cb-button"
+                                id="cb-@cookbook.CookBookId.ToString()-button"
+                                value="@cookbook.CookBookId.ToString()">
+                            @cookbook.CookBookName
+                        </button>
                     }
+                    <hr class="button-divider" />
+                </div>
+                <div class="col-xs-6 col-sm-12 create-recipe-container text-center">
+                    <!--Create CookBook/Recipe Buttons-->
+                    <button class="btn btn-block create-button" onclick="window.location.href='/CookBooks/Create'">New Cookbook</button>
+                    <button class="btn btn-block create-button" onclick="window.location.href='/Recipes/Create'">New Recipe</button>
                 </div>
             </div>
         </div>
+        <div class="col-sm-9 col-md-10 recipe-container">
+            <h3 class="title">@ViewBag.Title</h3>
+            <hr class="title" />
+            <div class="row">
+                @foreach (var cookbook in Model)
+                {
+                    //CookBook Name Display Within Recipe Container
+                    <div class="row">
+                        @*<div class="col-md-1 cookbook-name-display hidden cb-@cookbook.CookBookId.ToString()"></div>*@
+                        <div class="col-xs-12 col-md-11 cookbook-name-display hidden cb-@cookbook.CookBookId.ToString()">
+                            <h4>@cookbook.CookBookName</h4>
+                            <hr />
+                        </div>
+                    </div>
+                    //Individual Recipes
+                    foreach (var recipe in cookbook.Recipes)
+                    {
+                        <div class="col-xs-12 col-sm-6 individual-recipe-container hidden cb-@cookbook.CookBookId.ToString()">
+                            <div class="individual-recipe col-centered btn btn-default">
+                                <!--Recipe Image-->
+                                @if (recipe.ImageReference != null)
+                                {
+                                    <div class="recipe-image" style="background-image: url(@recipe.ImageReference)"></div>
+                                }
+                                else
+                                {
+                                    <div class="row col-centered">
+                                        <div class="recipe-image-missing">
+                                            <p class="glyphicon glyphicon-camera"></p>
+                                        </div>
+                                    </div>
+                                }
+                                <hr class="recipe-image-name-divider" />
+                                <!--Recipe Name-->
+                                <div class="row recipe-name">
+                                    <p class="recipe-text">@recipe.RecipeName</p>
+                                </div>
+                                <!--Recipe Buttons,
+                                    Using Cb-ID-button as a way to select
+                                    appropriate cookbook-selector-buttons-->
+                                <div class="btn btn-default hide-individual-recipe cb-@cookbook.CookBookId.ToString()-button">Hide</div>
+                                <div class="btn btn-default recipe-details"
+                                     onclick="window.location.href='/Recipes/Details/@recipe.RecipeId'">Details</div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
 </div>

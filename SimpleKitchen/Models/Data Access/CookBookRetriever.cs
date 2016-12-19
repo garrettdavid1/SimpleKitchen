@@ -13,10 +13,10 @@ namespace SimpleKitchen.Models
         public IEnumerable<string> GetUserCookBookNames(ClaimsIdentity identity)
         {
             string userId = new CurrentUserIdRetriever().GetUserId(identity);
-            List<CookBook> cookBooks = repository
+            List<CookBook> cookBooks = EntitySorter.SortCookBooks(repository
                 .GetAll()
                 .Where(c => c.OwnerId == userId)
-                .ToList();
+                .ToList());
             List<string> cookBookNames = new List<string>();
             foreach(var cookBook in cookBooks)
             {
