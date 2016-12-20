@@ -1,15 +1,25 @@
 ﻿$(document).ready(function () {
     $(".cookbook-name-button").click(function () {
-        var selector = ".cb-" + $(this).val().toString();
-        $(selector).toggleClass("hidden");
-        $(this).toggleClass("btn-primary");
-        $(function(){
-            if (!($(this).hasClass("btn-primary"))) { //Case: This class is hidden
+        var recipeContainer = ".cb-" + $(this).val().toString();
+        var numOfHidden = $(".individual-recipe-container.hidden" + recipeContainer).length;
+        var allRecipesVisible = numOfHidden === 0;
+        var totalNumOfRecipes = $(".individual-recipe-container" + recipeContainer).length;
+        var someRecipesVisible = (numOfHidden != totalNumOfRecipes)//Some (Maybe all) Visible
+            && !allRecipesVisible; //Some Hidden
+        if (someRecipesVisible || allRecipesVisible) {
+            $(this).removeClass("btn-primary");
+            $(recipeContainer).addClass("hidden");
+        }  else {
+            $(this).addClass("btn-primary");
+            $(recipeContainer).removeClass("hidden");
+        }
+        $(function () {
+            if (!($(this).hasClass("btn-primary"))) { //Case: This button is btn-default
                 $("#show-all-recipes").removeClass("btn-primary");
             };
-            if (!($(".cookbook-name-button").hasClass("btn-primary"))) { //Case: All buttons are hidden
+            if (!($(".cookbook-name-button").hasClass("btn-primary"))) { //Case: All buttons are btn-default
                 $("#hide-all-recipes").addClass("btn-primary");
-            } else {//Case: At least one button is visible
+            } else {//Case: At least one button is btn-primary
                 $("#hide-all-recipes").removeClass("btn-primary");
             };
         })
@@ -31,9 +41,9 @@
         var cookBookIdForButton = $(this).attr("class").split(" ").pop();
         var container = $(this).parent().parent();
         $(container).addClass("hidden");
-        var numOfContainers = $(this).parent().parent().siblings(".individual-recipe-container." + cookBookId).length;
-        var numOfHiddenContainers = $(this).parent().parent().siblings(".individual-recipe-container.hidden." + cookBookId).length;
-        if(numOfContainers == numOfHiddenContainers) {
+        var numOfContainers = $(container).siblings(".individual-recipe-container." + cookBookId).length;
+        var numOfHiddenContainers = $(container).siblings(".individual-recipe-container.hidden." + cookBookId).length;
+        if(numOfContainers === numOfHiddenContainers) {
             $('#' + cookBookIdForButton).removeClass("btn-primary");
             $(cookBookId).addClass("hidden");
             $("#show-all-recipes").removeClass("btn-primary");
