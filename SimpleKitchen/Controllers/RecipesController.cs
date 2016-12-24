@@ -67,7 +67,7 @@ namespace SimpleKitchen.Controllers
         // GET: Recipes/Create
         public ActionResult Create()
         {
-            ViewBag.CookBookNames = new CookBookRetriever().GetUserCookBookNames(User.Identity as ClaimsIdentity);
+            ViewBag.CookBookNames = new CookBookRetriever().GetUserCookBookNames(User.Identity as ClaimsIdentity, "Saved Recipes");
             return View();
         }
 

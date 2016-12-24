@@ -79,7 +79,7 @@
                                     appropriate cookbook-selector-buttons-->
                                 <div class="btn btn-default hide-individual-recipe cb-@cookbook.CookBookId.ToString()-button">Hide</div>
                                 <button type="button" data-id="@recipe.RecipeId"class="btn btn-default recipe-details" data-toggle="modal" data-target="#recipeModal"
-                                        @*href="/Recipes/Details/@recipe.RecipeId"*@
+                                        href="/Recipes/Details/@recipe.RecipeId"
                                      @*onclick="window.location.href='/Recipes/Details/@recipe.RecipeId'"*@>Details</button>
                             </div>
                         </div>
@@ -91,13 +91,14 @@
 </div>
 
 <div id="recipeModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Recipe Details</h4>
     </div>
     <div class="modal-body">
         <p>Modal body text here</p>
-        @*@RenderPage("/Recipes/Details/");*@
+        <p id="recipe"></p>
+        
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

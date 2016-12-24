@@ -152,7 +152,7 @@ namespace SimpleKitchen.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser()
+                ApplicationUser user = new ApplicationUser
                 {
                     PublicName = model.PublicName,
                     UserName = model.Email,
@@ -172,10 +172,9 @@ namespace SimpleKitchen.Controllers
                     }
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                await UserManager.AddClaimAsync(user.Id, new Claim("PublicName", user.PublicName));
                 if (result.Succeeded)
                 {
-
+                    await UserManager.AddClaimAsync(user.Id, new Claim("PublicName", user.PublicName));
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

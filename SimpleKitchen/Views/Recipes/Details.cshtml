@@ -1,12 +1,14 @@
 ﻿@model SimpleKitchen.Models.Recipe
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.RecipeName;
 }
 
-<h2>Details</h2>
-
+<br />
+<hr />
 @Html.Partial("RecipeDetailsPartial")
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RecipeId })
+    <button type="button" class="modal-button btn btn-info" 
+            onclick="window.location.href='Recipes/Edit/@Model.RecipeId'">Edit</button>
 </p>
+<br />

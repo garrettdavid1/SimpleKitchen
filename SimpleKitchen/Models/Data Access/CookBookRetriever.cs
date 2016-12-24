@@ -10,7 +10,23 @@ namespace SimpleKitchen.Models
 {
     public class CookBookRetriever : RepositoryInstantiator<CookBook>
     {
+
         public IEnumerable<string> GetUserCookBookNames(ClaimsIdentity identity)
+        {
+            string userId = new CurrentUserIdRetriever().GetUserId(identity);
+            List<CookBook> cookBooks = EntitySorter.SortCookBooks(repository
+                .GetAll()
+                .Where(c => c.OwnerId == userId)
+                .ToList());
+            List<string> cookBookNames = new List<string>();
+            foreach (var cookBook in cookBooks)
+            {
+                    cookBookNames.Add(cookBook.CookBookName);
+            }
+            repository.Dispose();
+            return cookBookNames;
+        }
+        public IEnumerable<string> GetUserCookBookNames(ClaimsIdentity identity, string excludeCookBook)
         {
             string userId = new CurrentUserIdRetriever().GetUserId(identity);
             List<CookBook> cookBooks = EntitySorter.SortCookBooks(repository
@@ -20,7 +36,10 @@ namespace SimpleKitchen.Models
             List<string> cookBookNames = new List<string>();
             foreach(var cookBook in cookBooks)
             {
-                cookBookNames.Add(cookBook.CookBookName);
+                if(!(cookBook.CookBookName == excludeCookBook))
+                {
+                    cookBookNames.Add(cookBook.CookBookName);
+                }
             }
             repository.Dispose();
             return cookBookNames;

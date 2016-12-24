@@ -1,0 +1,20 @@
+﻿body {
+    background-color: black;
+    color: white;
+}
+
+
+.image-container{
+    width: 50%;
+    height: 60%;
+}
+
+nav{
+    background-color: transparent;
+}
+
+.modal-button{
+    float: right;
+    color: black;
+    font-weight: 500;
+}

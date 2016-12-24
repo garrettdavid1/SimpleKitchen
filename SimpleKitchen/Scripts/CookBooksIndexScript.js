@@ -49,6 +49,10 @@
             $("#show-all-recipes").removeClass("btn-primary");
             $(".cookbook-name-display." + cookBookId).addClass("hidden");
         }
+        //Pass data to modal
+        var recipe = $(this).data('id');
+        $(".modal-body #recipe").val(recipe);
+
     });
     $(function () {
         $(window).bind("resize", function () {

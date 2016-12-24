@@ -70,6 +70,10 @@ hr {
     border-radius: 7%;
 }
 
+.modal-backdrop{
+    opacity: 1 !important;
+}
+
 .recipe-container{
     min-height: 500px;
     border: 1px solid black;

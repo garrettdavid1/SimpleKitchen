@@ -1,40 +1,52 @@
 ﻿@model SimpleKitchen.Models.Recipe
+<link href="~/Content/RecipeDetailsPartial.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="row">
+        <div class="row">
+            <h2>
+                @Model.RecipeName
+                <button type="button" class="modal-button btn btn-danger" data-dismiss="modal">&times</button>
+                </h2>
+            <hr />
+        </div>
+        <div class="row">
+            <div class="image-container col-xs-6">
+                <img class="col-xs-12"src=@Model.ImageReference />
+            </div>
+            <br />
+            <dl class="dl-horizontal col-xs-6">
+                <dt>
+                    @Html.DisplayNameFor(model => model.RecipeName)
+                </dt>
 
-<div>
-    <h4>Recipe</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RecipeName)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.RecipeName)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.RecipeName)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Ingredients)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ingredients)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Ingredients)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ingredients)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Instructions)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Instructions)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Instructions)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Instructions)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.IsPublic)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsPublic)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsPublic)
-        </dd>
-
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.IsPublic)
+                </dd>
+            </dl>
+        </div>
+    </div>
 </div>
