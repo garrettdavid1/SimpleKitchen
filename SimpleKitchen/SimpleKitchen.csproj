@@ -219,6 +219,7 @@
     <Content Include="Content\CookBooksEdit.css" />
     <Content Include="Content\CookBooksIndex.css" />
     <Content Include="Content\RecipeDetailsPartial.css" />
+    <Content Include="Content\RecipesCreate.css" />
     <Content Include="Scripts\CookBooksEditScript.js" />
     <Content Include="Scripts\CookBooksIndexScript.js" />
     <Content Include="Scripts\HomeIndexScript.js" />

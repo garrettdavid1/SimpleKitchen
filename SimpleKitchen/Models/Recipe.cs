@@ -18,6 +18,7 @@ namespace SimpleKitchen.Models
         public string Instructions { get; set; }
         [Display(Name = "Public Recipe?")]
         public bool IsPublic { get; set; }
+        public string Description { get; set; }
         public string OwnerId { get; set; }
         public string ImageReference { get; set; }
         public virtual ApplicationUser Owner { get; set; }
@@ -37,6 +38,7 @@ namespace SimpleKitchen.Models
             OwnerId = ownerId;
             CookBooksContainingRecipe.Add(cookBook);
             ImageReference = viewModel.ImageReference;
+            Description = viewModel.Description;
         }
 
         public Recipe(RecipesEditViewModel viewModel)
@@ -48,6 +50,7 @@ namespace SimpleKitchen.Models
             IsPublic = viewModel.IsPublic;
             OwnerId = viewModel.OwnerId;
             ImageReference = viewModel.ImageReference;
+            Description = viewModel.Description;
         }
     }
 }

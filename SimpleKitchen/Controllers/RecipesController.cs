@@ -74,7 +74,7 @@ namespace SimpleKitchen.Controllers
         // POST: Recipes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "RecipeName,Ingredients,Instructions,IsPublic,CookBookName,UploadedFile")] RecipesCreateViewModel viewModel)
+        public async Task<ActionResult> Create([Bind(Include = "RecipeName,Ingredients,Instructions,IsPublic,CookBookName,UploadedFile,Description")] RecipesCreateViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +101,7 @@ namespace SimpleKitchen.Controllers
         // POST: Recipes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "RecipeId,RecipeName,Ingredients,Instructions,IsPublic,OwnerId,UploadedFile,ImageReference")] RecipesEditViewModel viewModel)
+        public async Task<ActionResult> Edit([Bind(Include = "RecipeId,RecipeName,Ingredients,Instructions,IsPublic,OwnerId,UploadedFile,ImageReference,Description")] RecipesEditViewModel viewModel)
         {
             
             if (ModelState.IsValid)

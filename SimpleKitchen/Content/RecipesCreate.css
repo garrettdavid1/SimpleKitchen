@@ -1,0 +1,52 @@
+﻿body {
+    padding-left: 20px;
+    padding-right: 0px;
+}
+
+.col-centered{
+    margin: auto;
+}
+
+.form-group{
+    padding-left: 20px;
+}
+
+.form-horizontal.control-label{
+    margin-right: 10px;
+    width: 100%;
+    text-align: left;
+}
+
+input{
+    margin-right: 0px;
+}
+
+.input-col-left{
+    margin-left: 20px;
+    margin-right: -10px;
+}
+
+.input-col-right{
+    margin-left: -10px;
+}
+
+label{
+    padding-right: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+    body{
+        padding-left: 0px;
+    }
+    .input-col-left{
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 0px;
+    }
+    .form-horizontal{
+        margin-left: 20px;
+    }
+    textarea{
+        max-width: 80%
+    }
+}

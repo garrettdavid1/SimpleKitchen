@@ -18,11 +18,13 @@ namespace SimpleKitchen.Models.ViewModels
                 [Display(Name = "Instructions*")]
         public string Instructions { get; set; }
                 [Required]
-                [Display(Name = "Public Recipe?")]
+                [Display(Name = "Make Recipe Public?")]
         public bool IsPublic { get; set; }
                 [Required]
                 [Display(Name = "Select a CookBook*")]
         public string CookBookName { get; set; }
+        [StringLength(maximumLength: 200)]
+        public string Description { get; set; }
         public string ImageReference { get; set; }
                 [Display(Name = "Upload a Photo")]
         public HttpPostedFileBase UploadedFile { get; set; }
