@@ -4,7 +4,7 @@
         var numOfHidden = $(".individual-recipe-container.hidden" + recipeContainer).length;
         var allRecipesVisible = numOfHidden === 0;
         var totalNumOfRecipes = $(".individual-recipe-container" + recipeContainer).length;
-        var someRecipesVisible = (numOfHidden != totalNumOfRecipes)//Some (Maybe all) Visible
+        var someRecipesVisible = (numOfHidden !== totalNumOfRecipes)//Some (Maybe all) Visible
             && !allRecipesVisible; //Some Hidden
         if (someRecipesVisible || allRecipesVisible) {
             $(this).removeClass("btn-primary");

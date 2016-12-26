@@ -11,7 +11,7 @@
 <div class="container-fluid index-container">
     <div class="row cookbook-container">
         <!--CookBook Show/Hide Button Container-->
-        <div class="col-sm-3 col-md-2 text-center cookbook-button-container">
+        <div class="col-sm-3 text-center cookbook-button-container">
             <h2>Cookbooks</h2>
             <hr />
             <div row="cookbook-buttons">
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-9 col-md-10 recipe-container">
+        <div class="col-sm-9 recipe-container">
             <h3 class="title">@ViewBag.Title</h3>
             <hr class="title" />
             <div class="row">
@@ -45,7 +45,6 @@
                 {
                     //CookBook Name Display Within Recipe Container
                     <div class="row">
-                        @*<div class="col-md-1 cookbook-name-display hidden cb-@cookbook.CookBookId.ToString()"></div>*@
                         <div class="col-xs-12 col-md-11 cookbook-name-display hidden cb-@cookbook.CookBookId.ToString()">
                             <h4>@cookbook.CookBookName</h4>
                             <hr />

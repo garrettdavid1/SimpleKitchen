@@ -3,25 +3,19 @@
 <div class="container-fluid">
     <div class="row">
         <div class="row">
-            <h2>
-                @Model.RecipeName
-                <button type="button" class="modal-button btn btn-danger" data-dismiss="modal">&times</button>
-                </h2>
+            <h2 class="header col-xs-12">
+                @Html.DisplayFor(m => m.RecipeName)
+                <button type="button" class="modal-button btn btn-danger" data-dismiss="modal">X</button>
+            </h2>
             <hr />
         </div>
-        <div class="row">
-            <div class="image-container col-xs-6">
-                <img class="col-xs-12"src=@Model.ImageReference />
-            </div>
-            <br />
-            <dl class="dl-horizontal col-xs-6">
-                <dt>
-                    @Html.DisplayNameFor(model => model.RecipeName)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.RecipeName)
-                </dd>
+        <div class="col-xs-12 col-sm-6 row image-wrapper">
+            <div class="col-xs-1 image-side-buffer"></div>
+            <div class="image-container col-xs-10" style="background-image: url(@Model.ImageReference)"></div>
+            <div class="col-xs-1 image-side-buffer"></div>
+        </div>
+        <div class="recipe-info col-xs-12 col-sm-6">
+            <dl class="dl-horizontal">
 
                 <dt>
                     @Html.DisplayNameFor(model => model.Ingredients)
@@ -37,14 +31,6 @@
 
                 <dd>
                     @Html.DisplayFor(model => model.Instructions)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.IsPublic)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.IsPublic)
                 </dd>
             </dl>
         </div>

@@ -3,18 +3,73 @@
     color: white;
 }
 
+.col-centered{
+    margin: auto;
+}
 
+.dl-horizontal dt{
+    width: 90px;
+    font-size: 15px;
+    line-height: 100%;
+    text-align: left;
+}
+
+.dl-horizontal dd{
+    margin-left: 50px;
+    text-align: left;
+}
+
+.header{
+    font-size: 2em;
+}
+    
 .image-container{
-    width: 50%;
-    height: 60%;
+    height: 200px !important;
+    max-height: 100%;
+    background-position-y: center;
+    background-size: cover;
+    background-origin: border-box;
+}
+
+.image-wrapper{
+    padding: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.modal-button{
+    float: right;
+    font-size: 18px;
+    color: black;
+    font-weight: 500;
 }
 
 nav{
     background-color: transparent;
 }
 
-.modal-button{
-    float: right;
-    color: black;
-    font-weight: 500;
+.recipe-info{
+    border-spacing: 10px;
+    padding-left: 0px;
+}
+
+@media only screen and (max-width: 768px){
+    .dl-horizontal dt{
+        width: 100px;
+    }
+    .dl-horizontal dd{
+        margin-left: 25px;
+    }
+    .header{
+        font-size: 1.5em;
+    }
+    .recipe-info{
+        padding-left: 15px;
+    }
+}
+
+@media only screen and (min-width: 769px){
+    .header{
+        font-size: 2em;
+    }
 }
