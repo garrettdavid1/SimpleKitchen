@@ -1,4 +1,38 @@
-﻿$(document).ready(function () {
+﻿var respondToSmallestScreenSize = function(){
+    $(".create-recipe-container").addClass("hidden");
+    $(".cookbook-button-wrapper").removeClass("col-xs-6").addClass("col-xs-12");
+    $(".button-divider").addClass("hidden");
+    $(".unnecessary-nav").removeClass("hidden");
+    $(".cookbook-button-container").css("margin-left", "0px");
+    $(".title").addClass("hidden");
+    $(".yields-buffer").addClass("hidden");
+};
+var respondToSmallScreenSize = function () {
+    $(".create-recipe-container").addClass("hidden");
+    $(".cookbook-button-wrapper").removeClass("col-xs-6").addClass("col-xs-12");
+    $(".button-divider").addClass("hidden");
+    $(".unnecessary-nav").removeClass("hidden");
+    $(".cookbook-button-container").css("margin-left", "0px");
+    $(".title").addClass("hidden");
+    $(".yields-buffer").addClass("hidden");
+};
+var respondToMediumScreenSize = function () {
+    $(".unnecessary-nav").addClass("hidden");
+    $(".button-divider").removeClass("hidden");
+    $(".create-recipe-container").removeClass("hidden");
+    $(".title").addClass("hidden");
+    $(".yields-buffer").removeClass("hidden");
+};
+var respondToLargeScreenSize = function () {
+    $(".unnecessary-nav").addClass("hidden");
+    $(".create-recipe-container").removeClass("hidden");
+    $(".cookbook-button-wrapper").removeClass("col-xs-12").addClass("col-xs-6");
+    $(".button-divider").removeClass("hidden");
+    $(".title").addClass("hidden");
+    $(".yields-buffer").removeClass("hidden");
+};
+
+$(document).ready(function () {
     $(".cookbook-name-button").click(function () {
         var recipeContainer = ".cb-" + $(this).val().toString();
         var numOfHidden = $(".individual-recipe-container.hidden" + recipeContainer).length;
@@ -54,28 +88,35 @@
         $(".modal-body #recipe").val(recipe);
 
     });
+    /*Responsive design based off font-size of element set from media queries to avoid having to resize
+    the screen by default*/
+    $(function () {
+        if ($("#screen-size-indicator").css("font-size") === "2px") {
+            respondToSmallestScreenSize();
+        }
+         else if ($("#screen-size-indicator").css("font-size") === "3px") {
+             respondToSmallScreenSize();
+         }
+         else if ($("#screen-size-indicator").css("font-size") === "4px") {
+             respondToMediumScreenSize();
+            }
+         else if ($("#screen-size-indicator").css("font-size") === "5px") {
+             respondToLargeScreenSize();
+         }
+    })
     $(function () {
         $(window).bind("resize", function () {
-            if ($(this).width() < 770) {
-                $(".create-recipe-container").addClass("hidden");
-                $(".cookbook-button-wrapper").removeClass("col-xs-6").addClass("col-xs-12");
-                $(".button-divider").addClass("hidden");
-                $(".unnecessary-nav").removeClass("hidden");
-                $(".cookbook-button-container").css("margin-left", "0px");
-                $(".title").addClass("hidden");
-
-            } else if ($(this).width() < 992) {
-                $(".unnecessary-nav").addClass("hidden");
-                $(".button-divider").removeClass("hidden");
-                $(".create-recipe-container").removeClass("hidden");
-                $(".title").removeClass("hidden");
+            if ($(this).width() < 300) {
+                respondToSmallestScreenSize();
+            }
+            else if ($(this).width < 769) {
+                respondToSmallScreenSize();
+            }
+            else if ($(this).width < 993) {
+                respondToMediumScreenSize();
             }
             else {
-                $(".unnecessary-nav").removeClass("hidden");
-                $(".create-recipe-container").removeClass("hidden");
-                $(".cookbook-button-wrapper").removeClass("col-xs-12").addClass("col-xs-6");
-                $(".button-divider").removeClass("hidden");
-                $(".title").removeClass("hidden");
+                respondToLargeScreenSize();
             }
         })
     })

@@ -1,27 +1,31 @@
 ﻿@model SimpleKitchen.Models.ViewModels.RecipesEditViewModel
+<link href="~/Content/RecipeForm.css" rel="stylesheet" />
 
-@{
-    ViewBag.Title = "Edit";
+@if (!String.IsNullOrEmpty(ViewBag.Message))
+{
+    <h3 style="color: red;">@ViewBag.Message</h3>
 }
 
 <h2>Edit</h2>
-
-
+<hr />
+<p><span class="asterisk">* </span> = Required</p>
 @using (Html.BeginForm("Edit", "Recipes", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.RecipeId)
+    @Html.HiddenFor(model => model.OwnerId)
+    @Html.HiddenFor(model => model.ImageReference)
+    for (int i = 0; i < Model.CookBooksContainingRecipe.Count; i++)
+    {
+        @Html.HiddenFor(model => model.CookBooksContainingRecipe[i]);
+    }
+    @Html.Partial("RecipeForm", Model)
+    @*@Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <h4>Recipe</h4>
         <hr />
-        @if (!String.IsNullOrEmpty(ViewBag.Message))
-        {
-            <h3 style="color: red;">@ViewBag.Message</h3>
-        }
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.RecipeId)
-        @Html.HiddenFor(model => model.OwnerId)
-        @Html.HiddenFor(model => model.ImageReference)
+        
 
         <div class="form-group">
             @Html.LabelFor(model => model.RecipeName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -78,12 +82,8 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
-    </div>
+    </div>*@
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index", "CookBooks")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

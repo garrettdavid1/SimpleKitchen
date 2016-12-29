@@ -1,38 +1,82 @@
-﻿@model SimpleKitchen.Models.Recipe
+﻿@model SimpleKitchen.Models.ViewModels.RecipesDetailsViewModel
 <link href="~/Content/RecipeDetailsPartial.css" rel="stylesheet" />
+<script src="~/Scripts/RecipesDetailsScript.js"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="row">
-            <h2 class="header col-xs-12">
-                @Html.DisplayFor(m => m.RecipeName)
-                <button type="button" class="modal-button btn btn-danger" data-dismiss="modal">X</button>
-            </h2>
-            <hr />
+            <div class="col-xs-12 header">
+                <h2>
+                    @Html.DisplayFor(m => m.RecipeName)
+                    <button type="button" class="modal-button glyphicon glyphicon-edit btn btn-default"
+                            onclick="window.location.href='Recipes/Edit/@Model.RecipeId'"></button>
+                    <button type="button" class="modal-button btn btn-danger" data-dismiss="modal">X</button>
+                </h2>
+            </div>
         </div>
-        <div class="col-xs-12 col-sm-6 row image-wrapper">
-            <div class="col-xs-1 image-side-buffer"></div>
-            <div class="image-container col-xs-10" style="background-image: url(@Model.ImageReference)"></div>
-            <div class="col-xs-1 image-side-buffer"></div>
+        <hr style="margin-top: 5px;"/>
+        <div class="row">
+            <div class="col-sm-6 row image-wrapper">
+                <div class="col-xs-1 image-side-buffer"></div>
+                <div class="image-container col-xs-10" style="background-image: url(@Model.ImageReference)"></div>
+                <div class="col-xs-1 image-side-buffer"></div>
+            </div>
+            <div class="col-sm-6 row recipe-descrip-and-times">
+                <div class="row">
+                    <p class="recipe-description">@Html.DisplayFor(m => m.Description)</p>
+                </div>
+                <hr />
+                <div class="row">
+                    <p class="col-md-4 text-center">Prep Time: mins.</p>
+                    <p class="col-md-4 text-center">Cook Time:  mins.</p>
+                    <p class="col-md-4 text-center">Total Time: mins.</p>
+                </div>
+                <div class="row">
+                    <p class="col-sm-6 text-center">Yields: servings</p>
+                    <p class="col-sm-6 text-center">Rating: </p>
+                </div>
+                <hr />
+            </div>
         </div>
-        <div class="recipe-info col-xs-12 col-sm-6">
-            <dl class="dl-horizontal">
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Ingredients)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Ingredients)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Instructions)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Instructions)
-                </dd>
-            </dl>
+        <div class="row recipe-info col-xs-12">
+            <div class="col-sm-6 list">
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(model => model.Ingredients)</dt>
+                    <dd>
+                        <ul>
+                            @foreach (var ingredientName in Model.IngredientList)
+                            {
+                                <li class="ingredient-name col-sm-6">@ingredientName</li>
+                            }
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-sm-6 list">
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(model => model.Instructions)</dt>
+                    <dd>
+                        <ol>
+                            @foreach (var instruction in Model.InstructionList)
+                            {
+                                <li class="ingredient-name col-xs-12">@instruction</li>
+                            }
+                        </ol>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-sm-6">
+                <dl class="dl-horizontal">
+                    <dt>Additional Suggestions:</dt>
+                    <dd></dd>
+                </dl>
+            </div>
+            <div class="col-sm-6">
+                <dl class="dl-horizontal">
+                    <dt>Comments:</dt>
+                    <dd></dd>
+                </dl>
+            </div>
         </div>
     </div>
+    <div class="screen-size-indicator"></div>
 </div>

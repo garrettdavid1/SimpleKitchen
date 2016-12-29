@@ -8,15 +8,30 @@
 }
 
 .dl-horizontal dt{
-    width: 90px;
+    width: 100%;
     font-size: 15px;
     line-height: 100%;
+    margin-left: 0px;
+    padding-left: 0px;
     text-align: left;
 }
 
 .dl-horizontal dd{
-    margin-left: 50px;
+    margin-left: 0px;
+    padding-left: 0px;
     text-align: left;
+}
+
+.glyphicon-edit{
+    font-size: 20px !important;
+    font-weight: lighter !important;
+    float: none !important;
+    position: relative;
+}
+
+h2{
+    margin: 0px;
+    margin-top: 5px;
 }
 
 .header{
@@ -48,14 +63,52 @@ nav{
     background-color: transparent;
 }
 
+ol{
+    padding-left: 0px;
+}
+.recipe-descrip-and-times{
+    height: 220px;
+    box-sizing: content-box;
+}
+
+.recipe-description{
+    font-style: oblique;
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
 .recipe-info{
     border-spacing: 10px;
     padding-left: 0px;
 }
 
-@media only screen and (max-width: 768px){
+.screen-size-indicator{
+    font-size: 1px;
+}
+
+ul{
+    padding-left: 0px;
+}
+
+@media only screen and (max-width: 300px){
+    .image-container{
+        width: 70%;
+    }
+    .recipe-description{
+        font-size: 12px;
+    }
+    .screen-size-indicator{
+        font-size: 2px;
+    }
+}
+
+@media only screen and (min-width: 301px) and (max-width: 768px){
     .dl-horizontal dt{
         width: 100px;
+        line-height: 100%;
     }
     .dl-horizontal dd{
         margin-left: 25px;
@@ -63,13 +116,34 @@ nav{
     .header{
         font-size: 1.5em;
     }
+    li{
+        padding-right: 0px !important;
+        padding-left: 2px !important;
+    }
+    .list{
+        padding-right: 0px;
+    }
+    .recipe-descrip-and-times{
+        margin-left: 10px;
+        padding-right: 40px;
+        margin-bottom: 5px;
+    }
     .recipe-info{
         padding-left: 15px;
+        margin-top: 10px;
+        margin-right: 0px;
+        padding-right: 0px;
+    }
+    .screen-size-indicator{
+        font-size: 3px;
     }
 }
 
 @media only screen and (min-width: 769px){
     .header{
         font-size: 2em;
+    }
+    .screen-size-indicator{
+        font-size: 4px;
     }
 }

@@ -51,6 +51,7 @@ namespace SimpleKitchen.Models
             OwnerId = viewModel.OwnerId;
             ImageReference = viewModel.ImageReference;
             Description = viewModel.Description;
+            CookBooksContainingRecipe = viewModel.CookBooksContainingRecipe;
         }
     }
 }

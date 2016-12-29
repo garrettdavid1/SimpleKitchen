@@ -209,7 +209,9 @@
     <Compile Include="Models\ViewModels\CookBooksCreateViewModel.cs" />
     <Compile Include="Models\ViewModels\CookBooksEditViewModel.cs" />
     <Compile Include="Models\ViewModels\RecipesCreateViewModel.cs" />
+    <Compile Include="Models\ViewModels\RecipesDetailsViewModel.cs" />
     <Compile Include="Models\ViewModels\RecipesEditViewModel.cs" />
+    <Compile Include="Models\ViewModels\RecipeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -219,7 +221,7 @@
     <Content Include="Content\CookBooksEdit.css" />
     <Content Include="Content\CookBooksIndex.css" />
     <Content Include="Content\RecipeDetailsPartial.css" />
-    <Content Include="Content\RecipesCreate.css" />
+    <Content Include="Content\RecipeForm.css" />
     <Content Include="Scripts\CookBooksEditScript.js" />
     <Content Include="Scripts\CookBooksIndexScript.js" />
     <Content Include="Scripts\HomeIndexScript.js" />
@@ -238,6 +240,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\RecipesDetailsScript.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Site.js" />
@@ -290,6 +293,7 @@
     <Content Include="Views\CookBooks\Edit.cshtml" />
     <Content Include="Views\CookBooks\OldIndex.cshtml" />
     <Content Include="Views\CookBooks\Index.cshtml" />
+    <Content Include="Views\Recipes\RecipeForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

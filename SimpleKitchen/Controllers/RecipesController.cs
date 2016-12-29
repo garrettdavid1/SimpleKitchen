@@ -56,12 +56,12 @@ namespace SimpleKitchen.Controllers
         // GET: Recipes/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            Recipe recipe = await repository.GetAsync(id);
-            if (recipe == null)
+            RecipesDetailsViewModel viewModel = new RecipesDetailsViewModel(await repository.GetAsync(id));
+            if (viewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(recipe);
+            return View(viewModel);
         }
 
         // GET: Recipes/Create
@@ -94,14 +94,14 @@ namespace SimpleKitchen.Controllers
             {
                 return HttpNotFound();
             }
-
+            
             return View(new RecipesEditViewModel(recipe));
         }
 
         // POST: Recipes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "RecipeId,RecipeName,Ingredients,Instructions,IsPublic,OwnerId,UploadedFile,ImageReference,Description")] RecipesEditViewModel viewModel)
+        public async Task<ActionResult> Edit([Bind(Include = "RecipeId,RecipeName,Ingredients,Instructions,IsPublic,OwnerId,UploadedFile,ImageReference,Description,CookBooksContainingRecipe")] RecipesEditViewModel viewModel)
         {
             
             if (ModelState.IsValid)
