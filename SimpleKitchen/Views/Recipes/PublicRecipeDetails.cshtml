@@ -1,12 +1,10 @@
 ﻿@model SimpleKitchen.Models.Recipe
 
-@{
-    ViewBag.Title = "Details";
-}
 
 <h2>Public Recipe Details</h2>
 
 @Html.Partial("RecipeDetailsPartial")
+
 <p> 
     | @Html.ActionLink("Back to Public Recipes", "PublicRecipes") |
 </p>

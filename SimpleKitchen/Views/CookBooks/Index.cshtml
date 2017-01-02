@@ -43,18 +43,19 @@
             <div class="row">
                 @foreach (var cookbook in Model)
                 {
-                    //CookBook Name Display Within Recipe Container
                     <div class="row">
-                        <div class="col-xs-12 col-md-11 cookbook-name-display hidden cb-@cookbook.CookBookId.ToString()">
-                            <h4>@cookbook.CookBookName</h4>
-                            <hr />
+                        @*CookBook Name Display Within Recipe Container*@
+                        <div class="row">
+                            <div class="col-xs-12 col-md-11 cookbook-name-display hidden cb-@cookbook.CookBookId.ToString()">
+                                <h4>@cookbook.CookBookName</h4>
+                                <hr />
+                            </div>
                         </div>
-                    </div>
-                    //Individual Recipes
-                    foreach (var recipe in cookbook.Recipes)
-                    {
-                        <div class="col-xs-12 col-sm-6 individual-recipe-container hidden cb-@cookbook.CookBookId.ToString()">
-                            <div class="individual-recipe col-centered btn btn-default">
+                        @*Individual Recipes*@
+                        @foreach (var recipe in cookbook.Recipes)
+                        {
+                        <div class="col-xs-6 col-sm-4 individual-recipe-container hidden cb-@cookbook.CookBookId.ToString()">
+                            <div class="individual-recipe col-centered">
                                 <!--Recipe Image-->
                                 @if (recipe.ImageReference != null)
                                 {
@@ -76,13 +77,17 @@
                                 <!--Recipe Buttons,
                                     Using Cb-ID-button as a way to select
                                     appropriate cookbook-selector-buttons-->
-                                <div class="btn btn-default hide-individual-recipe cb-@cookbook.CookBookId.ToString()-button">Hide</div>
-                                <button type="button" data-id="@recipe.RecipeId"class="btn btn-default recipe-details" data-toggle="modal" data-target="#recipeModal"
+                                <button type="button" class="btn btn-default hide-individual-recipe cb-@cookbook.CookBookId.ToString()-button">Hide</button>
+                                <button type="button" data-id="@recipe.RecipeId" class="btn btn-default recipe-details" data-toggle="modal" data-target="#recipeModal"
                                         href="/Recipes/Details/@recipe.RecipeId"
-                                     @*onclick="window.location.href='/Recipes/Details/@recipe.RecipeId'"*@>Details</button>
+                                        @*onclick="window.location.href='/Recipes/Details/@recipe.RecipeId'"*@>
+                                    Details
+                                </button>
                             </div>
                         </div>
-                    }
+                        }
+                    </div>
+                    <br />
                 }
             </div>
         </div>

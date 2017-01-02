@@ -45,9 +45,8 @@ namespace SimpleKitchen.Models
             return cookBookNames;
         }
 
-        public CookBook GetCookBookForNewRecipe(ClaimsIdentity identity, string name)
+        public CookBook GetUserCookBookByName(string userId, string name)
         {
-            string userId = new CurrentUserIdRetriever().GetUserId(identity);
             CookBook CookBookForRecipe = repository
                 .GetAll()
                 .Where(c => c.OwnerId == userId && c.CookBookName == name)

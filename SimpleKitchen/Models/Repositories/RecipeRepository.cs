@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace SimpleKitchen.Models.Repositories
@@ -17,6 +18,11 @@ namespace SimpleKitchen.Models.Repositories
         {
             context.Entry(cookBook).State = EntityState.Modified;
             DbSet.Add(recipe);
+        }
+
+        public void SaveChanges()
+        {
+            context.SaveChanges();
         }
     }
 }

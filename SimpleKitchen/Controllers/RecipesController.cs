@@ -25,8 +25,7 @@ namespace SimpleKitchen.Controllers
         // GET: Recipes
         public ActionResult Index()
         {
-            string userIdValue = new CurrentUserIdRetriever()
-                .GetUserId(User.Identity as ClaimsIdentity);
+            string userIdValue = (User.Identity as ClaimsIdentity).GetUserId();
             var recipes = repository.GetAll()
                 .Where(x => x.OwnerId == userIdValue);
             return View(recipes);
@@ -79,7 +78,7 @@ namespace SimpleKitchen.Controllers
             if (ModelState.IsValid)
             {
                 await new RecipeHandler()
-                    .CreateAndSaveRecipe(viewModel, User.Identity as ClaimsIdentity);
+                    .CreateAndSaveRecipe(viewModel, new CurrentUserIdRetriever().GetUserId(User.Identity as ClaimsIdentity));
                 return RedirectToAction("Index", "CookBooks");
             }
 
@@ -139,6 +138,19 @@ namespace SimpleKitchen.Controllers
             repository.Delete(id);
             await repository.SaveChangesAsync();
             return RedirectToAction("Index", "CookBooks");
+        }
+        public async Task<JsonResult> SaveRecipe(string recipeIdString)
+        {
+            int recipeId = int.Parse(recipeIdString.Substring(3));
+            RecipeHandler recipeHandler = new RecipeHandler();
+            await recipeHandler.AddRecipeToCookBook(
+                recipeId, 
+                new CookBookRetriever()
+                    .GetUserCookBookByName(new CurrentUserIdRetriever()
+                    .GetUserId(User.Identity as ClaimsIdentity), "Saved Recipes")
+                );
+            bool Succeeded = true;
+            return Json(Succeeded);
         }
 
         protected override void Dispose(bool disposing)

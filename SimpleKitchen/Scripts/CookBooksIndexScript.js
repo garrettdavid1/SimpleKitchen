@@ -91,18 +91,32 @@ $(document).ready(function () {
     /*Responsive design based off font-size of element set from media queries to avoid having to resize
     the screen by default*/
     $(function () {
-        if ($("#screen-size-indicator").css("font-size") === "2px") {
-            respondToSmallestScreenSize();
+        switch ($("#screen-size-indicator").css("font-size")) {
+            case "2px":
+                respondToSmallestScreenSize();
+                break;
+            case "3px":
+                respondToSmallScreenSize();
+                break;
+            case "4px":
+                respondToMediumScreenSize();
+                break;
+            case "5px":
+                respondToLargeScreenSize();
+                break;
         }
-         else if ($("#screen-size-indicator").css("font-size") === "3px") {
-             respondToSmallScreenSize();
-         }
-         else if ($("#screen-size-indicator").css("font-size") === "4px") {
-             respondToMediumScreenSize();
-            }
-         else if ($("#screen-size-indicator").css("font-size") === "5px") {
-             respondToLargeScreenSize();
-         }
+        //if ($("#screen-size-indicator").css("font-size") === "2px") {
+        //    respondToSmallestScreenSize();
+        //}
+        // else if ($("#screen-size-indicator").css("font-size") === "3px") {
+        //     respondToSmallScreenSize();
+        // }
+        // else if ($("#screen-size-indicator").css("font-size") === "4px") {
+        //     respondToMediumScreenSize();
+        //    }
+        // else if ($("#screen-size-indicator").css("font-size") === "5px") {
+        //     respondToLargeScreenSize();
+        // }
     })
     $(function () {
         $(window).bind("resize", function () {

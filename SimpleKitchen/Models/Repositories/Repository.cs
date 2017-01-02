@@ -66,5 +66,10 @@ namespace SimpleKitchen.Models.Repositories
                 disposed = true;
             }
         }
+
+        internal void Detach(T entity)
+        {
+            context.Entry(entity).State = EntityState.Detached;
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<SimpleKitchen.Models.Recipe>
-
+<script src="~/Scripts/PublicRecipeDetailsScript.js"></script>
 @{
     ViewBag.Title = "Public Recipes";
 }
@@ -7,7 +7,7 @@
 <h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Personal Recipes", "Index", null, new { @class = "link-to-personal-recipes" })
+    @Html.ActionLink("Personal Recipes", "Index", null, new { @class = "link-to-personal-recipes requires-authentication" })
 </p>
 <table class="table">
     <tr>
@@ -21,6 +21,7 @@
     {
         <tr>
             <td>
+                <button type="button" href="~/" id="@item.RecipeId" class="btn btn-default glyphicon glyphicon-floppy-disk save-recipe"></button>
                 @Html.DisplayFor(modelItem => item.RecipeName)
             </td>
             <td>

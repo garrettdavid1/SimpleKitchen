@@ -31,5 +31,15 @@ namespace SimpleKitchen.Models.Repositories
                 .Include(o => o.Owner)
                 .SingleAsync());
         }
+
+        public async Task<CookBook> GetUserCookBookWithEagerLoadedObjectsAsyncByName(string userId, string cookBookName)
+        {
+            return EntitySorter.SortRecipesInCookBook(await context
+                .CookBooks
+                .Where(n => n.CookBookName == cookBookName && n.OwnerId == userId)
+                .Include(r => r.Recipes)
+                .Include(o => o.Owner)
+                .SingleAsync());
+        }
     }
 }
