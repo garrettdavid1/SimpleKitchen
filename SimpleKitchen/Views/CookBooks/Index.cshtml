@@ -58,7 +58,8 @@
                         @foreach (var recipe in cookbook.Recipes)
                         {
                             <div class="col-sm-3 individual-recipe-container hidden cb-@cookbook.CookBookId.ToString()">
-                                <div class="individual-recipe col-centered">
+                                <div class="btn individual-recipe col-centered">
+                                    <button type="button" class="btn btn-danger btn-xs hide-individual-recipe cb-@cookbook.CookBookId.ToString()-button">Hide</button>
                                     <!--Recipe Image-->
                                     @if (recipe.ImageReference != null)
                                     {
@@ -80,12 +81,11 @@
                                     <!--Recipe Buttons,
                                         Using Cb-ID-button as a way to select
                                         appropriate cookbook-selector-buttons-->
-                                    <button type="button" class="btn btn-default hide-individual-recipe cb-@cookbook.CookBookId.ToString()-button">Hide</button>
-                                    <button type="button" data-id="@recipe.RecipeId" class="btn btn-default recipe-details" data-toggle="modal" data-target="#recipeModal"
-                                            href="/Recipes/Details/@recipe.RecipeId"
-                                            @*onclick="window.location.href='/Recipes/Details/@recipe.RecipeId'"*@>
-                                        Details
-                                    </button>
+                                        <button type="button" data-id="@recipe.RecipeId" class="btn btn-default recipe-details" data-toggle="modal" data-target="#recipeModal"
+                                                href="/Recipes/Details/@recipe.RecipeId"
+                                                @*onclick="window.location.href='/Recipes/Details/@recipe.RecipeId'"*@>
+                                            Details
+                                        </button>
                                 </div>
                             </div>
                         }

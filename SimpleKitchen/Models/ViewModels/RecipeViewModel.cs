@@ -9,6 +9,7 @@ namespace SimpleKitchen.Models.ViewModels
     public class RecipeViewModel
     {
         [Required]
+        [StringLength(40)]
         [Display(Name = "Recipe Name")]
         public string RecipeName { get; set; }
         [Required]
