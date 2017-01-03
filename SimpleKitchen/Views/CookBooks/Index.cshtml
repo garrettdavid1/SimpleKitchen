@@ -28,17 +28,17 @@
                 <div class="col-sm-3">
                     <button class="btn btn-block cookbook-name-button btn-primary" id="hide-all-recipes">Hide All</button>
                 </div>
-                <!--CookBook Display Buttons-->
-                @foreach (var cookbook in Model)
-                {
-                    <div class="col-sm-3 ">
-                        <button class="btn btn-block cookbook-name-button cb-button"
-                                id="cb-@cookbook.CookBookId.ToString()-button"
-                                value="@cookbook.CookBookId.ToString()">
-                            @cookbook.CookBookName
-                        </button>
-                    </div>
-                }
+                    <!--CookBook Display Buttons-->
+                    @foreach (var cookbook in Model)
+                    {
+                        <div class="col-sm-3 ">
+                            <button class="btn btn-block cookbook-name-button cb-button"
+                                    id="cb-@cookbook.CookBookId.ToString()-button"
+                                    value="@cookbook.CookBookId.ToString()">
+                                @cookbook.CookBookName
+                            </button>
+                        </div>
+                    }
             </div>
         </div>
         <hr class="button-divider" />
@@ -62,17 +62,13 @@
                                     <!--Recipe Image-->
                                     @if (recipe.ImageReference != null)
                                     {
-                                        <div class="recipe-image" style="background-image: url(@recipe.ImageReference)">
-                                            <button type="button" class="btn btn-default hide-individual-recipe cb-@cookbook.CookBookId.ToString()-button">Hide</button>
-                                        </div>
+                                        <div class="recipe-image" style="background-image: url(@recipe.ImageReference)"></div>
                                     }
                                     else
                                     {
                                         <div class="row col-centered">
                                             <div class="recipe-image-missing">
-                                                <p class="glyphicon glyphicon-camera">
-                                                    <button type="button" class="btn btn-default hide-individual-recipe cb-@cookbook.CookBookId.ToString()-button">Hide</button>
-                                                </p>
+                                                <p class="glyphicon glyphicon-camera"></p>
                                             </div>
                                         </div>
                                     }
@@ -84,6 +80,7 @@
                                     <!--Recipe Buttons,
                                         Using Cb-ID-button as a way to select
                                         appropriate cookbook-selector-buttons-->
+                                    <button type="button" class="btn btn-default hide-individual-recipe cb-@cookbook.CookBookId.ToString()-button">Hide</button>
                                     <button type="button" data-id="@recipe.RecipeId" class="btn btn-default recipe-details" data-toggle="modal" data-target="#recipeModal"
                                             href="/Recipes/Details/@recipe.RecipeId"
                                             @*onclick="window.location.href='/Recipes/Details/@recipe.RecipeId'"*@>
