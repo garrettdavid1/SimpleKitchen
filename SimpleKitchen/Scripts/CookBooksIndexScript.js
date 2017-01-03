@@ -6,6 +6,7 @@
     $(".cookbook-button-container").css("margin-left", "0px");
     $(".title").addClass("hidden");
     $(".yields-buffer").addClass("hidden");
+    $("h2").css("margin-top", "40px");
 };
 var respondToSmallScreenSize = function () {
     $(".create-recipe-container").addClass("hidden");
@@ -15,6 +16,7 @@ var respondToSmallScreenSize = function () {
     $(".cookbook-button-container").css("margin-left", "0px");
     $(".title").addClass("hidden");
     $(".yields-buffer").addClass("hidden");
+    $("h2").css("margin-top", "40px");
 };
 var respondToMediumScreenSize = function () {
     $(".unnecessary-nav").addClass("hidden");
@@ -22,6 +24,7 @@ var respondToMediumScreenSize = function () {
     $(".create-recipe-container").removeClass("hidden");
     $(".title").addClass("hidden");
     $(".yields-buffer").removeClass("hidden");
+    $("h2").css("margin-top", "20px");
 };
 var respondToLargeScreenSize = function () {
     $(".unnecessary-nav").addClass("hidden");
@@ -105,18 +108,6 @@ $(document).ready(function () {
                 respondToLargeScreenSize();
                 break;
         }
-        //if ($("#screen-size-indicator").css("font-size") === "2px") {
-        //    respondToSmallestScreenSize();
-        //}
-        // else if ($("#screen-size-indicator").css("font-size") === "3px") {
-        //     respondToSmallScreenSize();
-        // }
-        // else if ($("#screen-size-indicator").css("font-size") === "4px") {
-        //     respondToMediumScreenSize();
-        //    }
-        // else if ($("#screen-size-indicator").css("font-size") === "5px") {
-        //     respondToLargeScreenSize();
-        // }
     })
     $(function () {
         $(window).bind("resize", function () {

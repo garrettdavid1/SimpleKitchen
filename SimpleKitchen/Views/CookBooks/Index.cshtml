@@ -10,42 +10,45 @@
 
 <div class="container-fluid index-container">
     <div class="row cookbook-container">
+        <h2>Cookbooks</h2>
+        <hr />
         <!--CookBook Show/Hide Button Container-->
-        <div class="col-sm-3 text-center cookbook-button-container">
-            <h2>Cookbooks</h2>
-            <hr />
+        <div class="col-xs-12 text-center cookbook-button-container">
             <div row="cookbook-buttons">
-                <div class="col-xs-6 col-sm-12 cookbook-button-wrapper">
-                    <!--Show/Hide All Buttons-->
+                <!--Show/Hide All & Create Buttons-->
+                <div class="col-sm-3">
+                    <button class="btn btn-block create-button" onclick="window.location.href='/CookBooks/Create'">New Cookbook</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-block create-button" onclick="window.location.href='/Recipes/Create'">New Recipe</button>
+                </div>
+                <div class="col-sm-3">
                     <button class="btn btn-block cookbook-name-button cb-button" id="show-all-recipes">Show All</button>
+                </div>
+                <div class="col-sm-3">
                     <button class="btn btn-block cookbook-name-button btn-primary" id="hide-all-recipes">Hide All</button>
-                    <!--CookBook Display Buttons-->
-                    @foreach (var cookbook in Model)
-                    {
+                </div>
+                <!--CookBook Display Buttons-->
+                @foreach (var cookbook in Model)
+                {
+                    <div class="col-sm-3 ">
                         <button class="btn btn-block cookbook-name-button cb-button"
                                 id="cb-@cookbook.CookBookId.ToString()-button"
                                 value="@cookbook.CookBookId.ToString()">
                             @cookbook.CookBookName
                         </button>
-                    }
-                    <hr class="button-divider" />
-                </div>
-                <div class="col-xs-6 col-sm-12 create-recipe-container text-center">
-                    <!--Create CookBook/Recipe Buttons-->
-                    <button class="btn btn-block create-button" onclick="window.location.href='/CookBooks/Create'">New Cookbook</button>
-                    <button class="btn btn-block create-button" onclick="window.location.href='/Recipes/Create'">New Recipe</button>
-                </div>
+                    </div>
+                }
             </div>
         </div>
-        <div class="col-sm-9 recipe-container">
-            <h3 class="title">@ViewBag.Title</h3>
-            <hr class="title" />
+        <hr class="button-divider" />
+        <div class="recipe-container">
             <div class="row">
                 @foreach (var cookbook in Model)
                 {
                     <div class="row">
                         @*CookBook Name Display Within Recipe Container*@
-                        <div class="row">
+                        <div class="row col-xs-12">
                             <div class="col-xs-12 col-md-11 cookbook-name-display hidden cb-@cookbook.CookBookId.ToString()">
                                 <h4>@cookbook.CookBookName</h4>
                                 <hr />
@@ -54,37 +57,40 @@
                         @*Individual Recipes*@
                         @foreach (var recipe in cookbook.Recipes)
                         {
-                        <div class="col-xs-6 col-sm-4 individual-recipe-container hidden cb-@cookbook.CookBookId.ToString()">
-                            <div class="individual-recipe col-centered">
-                                <!--Recipe Image-->
-                                @if (recipe.ImageReference != null)
-                                {
-                                    <div class="recipe-image" style="background-image: url(@recipe.ImageReference)"></div>
-                                }
-                                else
-                                {
-                                    <div class="row col-centered">
-                                        <div class="recipe-image-missing">
-                                            <p class="glyphicon glyphicon-camera"></p>
+                            <div class="col-sm-3 individual-recipe-container hidden cb-@cookbook.CookBookId.ToString()">
+                                <div class="individual-recipe col-centered">
+                                    <!--Recipe Image-->
+                                    @if (recipe.ImageReference != null)
+                                    {
+                                        <div class="recipe-image" style="background-image: url(@recipe.ImageReference)">
+                                            <button type="button" class="btn btn-default hide-individual-recipe cb-@cookbook.CookBookId.ToString()-button">Hide</button>
                                         </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="row col-centered">
+                                            <div class="recipe-image-missing">
+                                                <p class="glyphicon glyphicon-camera">
+                                                    <button type="button" class="btn btn-default hide-individual-recipe cb-@cookbook.CookBookId.ToString()-button">Hide</button>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    }
+                                    <hr class="recipe-image-name-divider" />
+                                    <!--Recipe Name-->
+                                    <div class="row recipe-name">
+                                        <p class="recipe-text">@recipe.RecipeName</p>
                                     </div>
-                                }
-                                <hr class="recipe-image-name-divider" />
-                                <!--Recipe Name-->
-                                <div class="row recipe-name">
-                                    <p class="recipe-text">@recipe.RecipeName</p>
+                                    <!--Recipe Buttons,
+                                        Using Cb-ID-button as a way to select
+                                        appropriate cookbook-selector-buttons-->
+                                    <button type="button" data-id="@recipe.RecipeId" class="btn btn-default recipe-details" data-toggle="modal" data-target="#recipeModal"
+                                            href="/Recipes/Details/@recipe.RecipeId"
+                                            @*onclick="window.location.href='/Recipes/Details/@recipe.RecipeId'"*@>
+                                        Details
+                                    </button>
                                 </div>
-                                <!--Recipe Buttons,
-                                    Using Cb-ID-button as a way to select
-                                    appropriate cookbook-selector-buttons-->
-                                <button type="button" class="btn btn-default hide-individual-recipe cb-@cookbook.CookBookId.ToString()-button">Hide</button>
-                                <button type="button" data-id="@recipe.RecipeId" class="btn btn-default recipe-details" data-toggle="modal" data-target="#recipeModal"
-                                        href="/Recipes/Details/@recipe.RecipeId"
-                                        @*onclick="window.location.href='/Recipes/Details/@recipe.RecipeId'"*@>
-                                    Details
-                                </button>
                             </div>
-                        </div>
                         }
                     </div>
                     <br />
@@ -103,7 +109,7 @@
     <div class="modal-body">
         <p>Modal body text here</p>
         <p id="recipe"></p>
-        
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

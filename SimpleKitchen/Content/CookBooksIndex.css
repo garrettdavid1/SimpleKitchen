@@ -1,9 +1,14 @@
-﻿body{
-    padding-left: 5px;
+﻿.div.container.body-content{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
 }
 
 .btn.btn-default{
     border-radius: 0px !important;
+}
+
+.btn-block{
+    border-radius: 0%;
 }
 .cookbook-jumbotron{
     font-style: italic;
@@ -28,10 +33,8 @@
     background-color: black;
     color: white;
     border-spacing: 10px;
-    margin-left: -50px;
-    margin-top: 10px;
     overflow: auto;
-    padding: 20px;
+    padding: 0px;
 }
 
 .cookbook-name-button{
@@ -43,6 +46,7 @@
 
 .create-button{
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .create-button:hover{
@@ -54,23 +58,32 @@
     word-wrap: normal;
 }
 
+.hide-individual-recipe{
+    float: right;
+    border: 1px solid gray;
+    font-size: 11px;
+}
+
 hr {
     border-color: gray;
 }
 
 .individual-recipe{
     border-spacing: 5px;
-    border: 1px solid gray;
+    border: 3px solid #264040;
     max-height: 244px;
     height: 244px;
     width: 100%;
     padding: 5px;
-    background-color: #264040;
+    background-color: white;
 }
 
 .individual-recipe-container{
     border: 2px solid black;
     background-color: black;
+    padding: 0px;
+    margin: 0px;
+    
 }
 
 .modal-backdrop{
@@ -85,6 +98,8 @@ hr {
     border-bottom: 10px solid black;
     background-color: black;
     color: white;
+    padding-right: 22px;
+    margin-left: 15px;
 }
 
 .recipe-image{
@@ -95,6 +110,7 @@ hr {
     margin: 0px;
     background-size: cover;
     background-position-y: center;
+    border: 1px solid gray;
 }
 
 .recipe-image-missing {
@@ -125,6 +141,7 @@ hr {
     font-style: oblique;
     font-weight: bold;
     font-family: cursive;
+    color: black;
 }
 
 #screen-size-indicator{
@@ -133,7 +150,7 @@ hr {
 
 @media only screen and (max-width: 300px){
     body{
-        margin-top: 20px !important;
+        margin-top: 40px !important;
         padding-top: 0px;
     }
     #screen-size-indicator{
