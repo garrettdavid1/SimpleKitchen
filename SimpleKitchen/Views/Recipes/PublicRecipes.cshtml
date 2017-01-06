@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<SimpleKitchen.Models.Recipe>
+<link href="~/Content/CookBooksIndex.css" rel="stylesheet" />
 <script src="~/Scripts/PublicRecipeDetailsScript.js"></script>
 @{
     ViewBag.Title = "Public Recipes";
@@ -7,27 +8,7 @@
 <h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Personal Recipes", "Index", null, new { @class = "link-to-personal-recipes requires-authentication" })
+    @Html.ActionLink("Personal Recipes", "Index", "CookBooks", null, new { @class = "link-to-personal-recipes requires-authentication" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RecipeName)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <button type="button" href="~/" id="@item.RecipeId" class="btn btn-default glyphicon glyphicon-floppy-disk save-recipe"></button>
-                @Html.DisplayFor(modelItem => item.RecipeName)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "PublicRecipeDetails", new { id = item.RecipeId })
-            </td>
-        </tr>
-    }
-
-</table>
+<hr />
+@Html.Partial("RecipeDisplayPartial")

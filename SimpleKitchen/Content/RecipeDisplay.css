@@ -1,0 +1,12 @@
+﻿.save-recipe{
+    float: left;
+    background-color: white;
+    font-size: 20px;
+    color: black;
+    border: 1px solid gray;
+    margin-top: 102px;
+}
+
+.save-recipe :hover{
+    background-color: transparent;
+}

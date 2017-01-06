@@ -222,6 +222,7 @@
     <Content Include="Content\CookBooksEdit.css" />
     <Content Include="Content\CookBooksIndex.css" />
     <Content Include="Content\RecipeDetailsPartial.css" />
+    <Content Include="Content\RecipeDisplay.css" />
     <Content Include="Content\RecipeForm.css" />
     <Content Include="Scripts\CookBooksEditScript.js" />
     <Content Include="Scripts\CookBooksIndexScript.js" />
@@ -295,6 +296,7 @@
     <Content Include="Views\CookBooks\OldIndex.cshtml" />
     <Content Include="Views\CookBooks\Index.cshtml" />
     <Content Include="Views\Recipes\RecipeForm.cshtml" />
+    <Content Include="Views\Recipes\RecipeDisplayPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

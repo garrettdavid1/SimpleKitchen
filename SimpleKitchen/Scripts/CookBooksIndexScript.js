@@ -1,41 +1,42 @@
-﻿var respondToSmallestScreenSize = function(){
-    $(".create-recipe-container").addClass("hidden");
-    $(".cookbook-button-wrapper").removeClass("col-xs-6").addClass("col-xs-12");
-    $(".button-divider").addClass("hidden");
-    $(".unnecessary-nav").removeClass("hidden");
-    $(".cookbook-button-container").css("margin-left", "0px");
-    $(".title").addClass("hidden");
-    $(".yields-buffer").addClass("hidden");
-    $("h2").css("margin-top", "40px");
-};
-var respondToSmallScreenSize = function () {
-    $(".create-recipe-container").addClass("hidden");
-    $(".cookbook-button-wrapper").removeClass("col-xs-6").addClass("col-xs-12");
-    $(".button-divider").addClass("hidden");
-    $(".unnecessary-nav").removeClass("hidden");
-    $(".cookbook-button-container").css("margin-left", "0px");
-    $(".title").addClass("hidden");
-    $(".yields-buffer").addClass("hidden");
-    $("h2").css("margin-top", "40px");
-};
-var respondToMediumScreenSize = function () {
-    $(".unnecessary-nav").addClass("hidden");
-    $(".button-divider").removeClass("hidden");
-    $(".create-recipe-container").removeClass("hidden");
-    $(".title").addClass("hidden");
-    $(".yields-buffer").removeClass("hidden");
-    $("h2").css("margin-top", "20px");
-};
-var respondToLargeScreenSize = function () {
-    $(".unnecessary-nav").addClass("hidden");
-    $(".create-recipe-container").removeClass("hidden");
-    $(".cookbook-button-wrapper").removeClass("col-xs-12").addClass("col-xs-6");
-    $(".button-divider").removeClass("hidden");
-    $(".title").addClass("hidden");
-    $(".yields-buffer").removeClass("hidden");
-};
+﻿
 
 $(document).ready(function () {
+    var respondToSmallestScreenSize = function () {
+        $(".create-recipe-container").addClass("hidden");
+        $(".cookbook-button-wrapper").removeClass("col-xs-6").addClass("col-xs-12");
+        $(".button-divider").addClass("hidden");
+        $(".unnecessary-nav").removeClass("hidden");
+        $(".cookbook-button-container").css("margin-left", "0px");
+        $(".title").addClass("hidden");
+        $(".yields-buffer").addClass("hidden");
+        $("h2").css("margin-top", "40px");
+    };
+    var respondToSmallScreenSize = function () {
+        $(".create-recipe-container").addClass("hidden");
+        $(".cookbook-button-wrapper").removeClass("col-xs-6").addClass("col-xs-12");
+        $(".button-divider").addClass("hidden");
+        $(".unnecessary-nav").removeClass("hidden");
+        $(".cookbook-button-container").css("margin-left", "0px");
+        $(".title").addClass("hidden");
+        $(".yields-buffer").addClass("hidden");
+        $("h2").css("margin-top", "40px");
+    };
+    var respondToMediumScreenSize = function () {
+        $(".unnecessary-nav").addClass("hidden");
+        $(".button-divider").removeClass("hidden");
+        $(".create-recipe-container").removeClass("hidden");
+        $(".title").addClass("hidden");
+        $(".yields-buffer").removeClass("hidden");
+        $("h2").css("margin-top", "20px");
+    };
+    var respondToLargeScreenSize = function () {
+        $(".unnecessary-nav").addClass("hidden");
+        $(".create-recipe-container").removeClass("hidden");
+        $(".cookbook-button-wrapper").removeClass("col-xs-12").addClass("col-xs-6");
+        $(".button-divider").removeClass("hidden");
+        $(".title").addClass("hidden");
+        $(".yields-buffer").removeClass("hidden");
+    };
     $(".cookbook-name-button").click(function () {
         var recipeContainer = ".cb-" + $(this).val().toString();
         var numOfHidden = $(".individual-recipe-container.hidden" + recipeContainer).length;
