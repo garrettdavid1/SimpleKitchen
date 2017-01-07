@@ -53,9 +53,13 @@ namespace SimpleKitchen.Controllers
         }
 
         // GET: Recipes/Details/5
+        [AllowAnonymous]
         public async Task<ActionResult> Details(int id)
         {
-            RecipesDetailsViewModel viewModel = new RecipesDetailsViewModel(await repository.GetAsync(id));
+            RecipesDetailsViewModel viewModel = new RecipesDetailsViewModel(
+                await repository.GetAsync(id), 
+                new CurrentUserIdRetriever()
+                    .GetUserId(User.Identity as ClaimsIdentity));
             if (viewModel == null)
             {
                 return HttpNotFound();

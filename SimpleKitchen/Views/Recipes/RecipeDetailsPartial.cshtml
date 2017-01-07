@@ -6,8 +6,10 @@
             <div class="col-xs-12 header">
                 <h2>
                     @Html.DisplayFor(m => m.RecipeName)
+                    @if(Model.CurrentUserIsOwner){
                     <button type="button" class="modal-button glyphicon glyphicon-edit btn btn-default"
                             onclick="window.location.href='Recipes/Edit/@Model.RecipeId'"></button>
+                    }
                     <button type="button" class="modal-button btn btn-danger" data-dismiss="modal">X</button>
                 </h2>
             </div>
@@ -26,7 +28,7 @@
                 <hr />
                 <div class="row">
                     <p class="col-md-4 text-center">Prep Time: mins.</p>
-                    <p class="col-md-4 text-center">Cook Time:  mins.</p>
+                    <p class="col-md-4 text-center">Cook Time: mins.</p>
                     <p class="col-md-4 text-center">Total Time: mins.</p>
                 </div>
                 <div class="row">

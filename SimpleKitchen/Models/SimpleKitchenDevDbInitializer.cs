@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SimpleKitchen.Models
 {
-    public class SimpleKitchenDevDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class SimpleKitchenDevDbInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         
     }

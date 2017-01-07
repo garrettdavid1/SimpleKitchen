@@ -6,7 +6,7 @@
     <div class="row">
         @foreach (var recipe in Model)
         {
-            <div class="col-sm-3 individual-recipe-container">
+            <div class="col-sm-3 individual-recipe-container hidden">
             <div class="btn individual-recipe col-centered">
                 <button type="button" href="~/" id="@recipe.RecipeId" class="btn btn-default glyphicon glyphicon-floppy-disk save-recipe requires-authentication"></button>
                 <button type="button" class="btn btn-danger btn-xs hide-individual-recipe">Hide</button>
@@ -28,11 +28,13 @@
                 <div class="row recipe-name">
                     <p class="recipe-text">@recipe.RecipeName</p>
                 </div>
-                <!--Recipe Buttons,
-                    Using Cb-ID-button as a way to select
-                    appropriate cookbook-selector-buttons-->
-                <button type="button" data-id="@recipe.RecipeId" class="btn btn-default recipe-details" data-toggle="modal" data-target="#recipeModal"
-                        href="/Recipes/Details/@recipe.RecipeId">
+                <!--Recipe Detials Button-->
+                <button type="button" 
+                        data-id="@recipe.RecipeId" 
+                        class="btn btn-default recipe-details" 
+                        data-toggle="modal" 
+                        data-target="#recipeModal"
+                        href="~/Recipes/Details/@recipe.RecipeId">
                     Details
                 </button>
             </div>

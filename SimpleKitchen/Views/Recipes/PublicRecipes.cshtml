@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<SimpleKitchen.Models.Recipe>
 <link href="~/Content/CookBooksIndex.css" rel="stylesheet" />
 <script src="~/Scripts/PublicRecipeDetailsScript.js"></script>
+<script src="~/Scripts/PublicRecipesScript.js"></script>
 @{
     ViewBag.Title = "Public Recipes";
 }
@@ -12,3 +13,17 @@
 </p>
 <hr />
 @Html.Partial("RecipeDisplayPartial")
+<div id="recipeModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Recipe Details</h4>
+    </div>
+    <div class="modal-body">
+        <p>Modal body text here</p>
+        <p id="recipe"></p>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+</div>

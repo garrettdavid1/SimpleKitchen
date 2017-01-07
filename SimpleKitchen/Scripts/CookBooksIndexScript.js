@@ -1,6 +1,4 @@
-﻿
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
     var respondToSmallestScreenSize = function () {
         $(".create-recipe-container").addClass("hidden");
         $(".cookbook-button-wrapper").removeClass("col-xs-6").addClass("col-xs-12");

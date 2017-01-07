@@ -54,41 +54,8 @@
                                 <hr />
                             </div>
                         </div>
-                        @*Individual Recipes*@
-                        @foreach (var recipe in cookbook.Recipes)
-                        {
-                            <div class="col-sm-3 individual-recipe-container hidden cb-@cookbook.CookBookId.ToString()">
-                                <div class="btn individual-recipe col-centered">
-                                    <button type="button" class="btn btn-danger btn-xs hide-individual-recipe cb-@cookbook.CookBookId.ToString()-button">Hide</button>
-                                    <!--Recipe Image-->
-                                    @if (recipe.ImageReference != null)
-                                    {
-                                        <div class="recipe-image" style="background-image: url(@recipe.ImageReference)"></div>
-                                    }
-                                    else
-                                    {
-                                        <div class="row col-centered">
-                                            <div class="recipe-image-missing">
-                                                <p class="glyphicon glyphicon-camera"></p>
-                                            </div>
-                                        </div>
-                                    }
-                                    <hr class="recipe-image-name-divider" />
-                                    <!--Recipe Name-->
-                                    <div class="row recipe-name">
-                                        <p class="recipe-text">@recipe.RecipeName</p>
-                                    </div>
-                                    <!--Recipe Buttons,
-                                        Using Cb-ID-button as a way to select
-                                        appropriate cookbook-selector-buttons-->
-                                        <button type="button" data-id="@recipe.RecipeId" class="btn btn-default recipe-details" data-toggle="modal" data-target="#recipeModal"
-                                                href="/Recipes/Details/@recipe.RecipeId"
-                                                @*onclick="window.location.href='/Recipes/Details/@recipe.RecipeId'"*@>
-                                            Details
-                                        </button>
-                                </div>
-                            </div>
-                        }
+                        @*Render Individual Recipes*@
+                        @Html.Partial("~/Views/Recipes/RecipeDisplayPartial.cshtml", cookbook.Recipes)
                     </div>
                     <br />
                 }
