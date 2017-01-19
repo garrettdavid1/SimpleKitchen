@@ -8,7 +8,7 @@
         $(".title").addClass("hidden");
         $(".yields-buffer").addClass("hidden");
         $("h2").css("margin-top", "35px");
-        $(".individual-recipe-container").css({ "margin-right": "22px", "margin-left": "-10px" });
+        //$(".individual-recipe-container").css({ "margin-right": "22px", "margin-left": "-10px" });
     };
     var respondToSmallScreenSize = function () {
         $(".create-recipe-container").addClass("hidden");
@@ -19,7 +19,7 @@
         $(".title").addClass("hidden");
         $(".yields-buffer").addClass("hidden");
         $("h2").css("margin-top", "30px");
-        $(".individual-recipe-container").css({"margin-right": "22px", "margin-left": "-10px"});
+        //$(".individual-recipe-container").css({"margin-right": "22px", "margin-left": "-10px"});
     };
     var respondToMediumScreenSize = function () {
         $(".unnecessary-nav").addClass("hidden");
@@ -28,7 +28,7 @@
         $(".title").addClass("hidden");
         $(".yields-buffer").removeClass("hidden");
         $("h2").css("margin-top", "20px");
-        $(".individual-recipe-container").css({ "margin-right": "22px", "margin-left": "-10px" });
+        //+
     };
     var respondToLargeScreenSize = function () {
         $(".unnecessary-nav").addClass("hidden");

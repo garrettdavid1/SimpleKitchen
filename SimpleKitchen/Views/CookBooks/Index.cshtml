@@ -11,21 +11,24 @@
 <div class="container-fluid index-container">
     <div class="row cookbook-container">
         <div class="row" style="margin-top: 10px;">
-            <h2 class="col-sm-7">Cookbooks</h2>
-            <div class="col-xs-6 col-sm-2">
-                <div class="col-xs-12">
-                    <button class="btn btn-block cookbook-name-button cb-button" id="show-all-recipes">Show All</button>
+            <h1 class="col-sm-3 text-center">Cookbooks</h1>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-8 top-buttons">
+                <div class="col-sm-6 top-button-col">
+                    <div class="col-sm-6 individual-top-button">
+                        <button class="btn btn-block cookbook-name-button cb-button" id="show-all-recipes">Show All</button>
+                    </div>
+                    <div class="col-sm-6 individual-top-button"">
+                        <button class="btn btn-block cookbook-name-button btn-primary" id="hide-all-recipes">Hide All</button>
+                    </div>
                 </div>
-                <div class="col-xs-12">
-                    <button class="btn btn-block cookbook-name-button btn-primary" id="hide-all-recipes">Hide All</button>
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-                <div class="col-xs-12">
-                    <button class="btn btn-block create-button" onclick="window.location.href='/CookBooks/Create'">New Cookbook</button>
-                </div>
-                <div class="col-xs-12">
-                    <button class="btn btn-block create-button" onclick="window.location.href='/Recipes/Create'">New Recipe</button>
+                <div class="col-sm-6 top-button-col">
+                    <div class="col-sm-6 individual-top-button"">
+                        <button class="btn btn-block create-button" onclick="window.location.href='/Recipes/Create'">New Recipe</button>
+                    </div>
+                    <div class="col-sm-6 individual-top-button"">
+                        <button class="btn btn-block create-button" onclick="window.location.href='/CookBooks/Create'">New Cookbook</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -36,40 +39,31 @@
         <div class="col-xs-12 text-center cookbook-button-container">
             <div row="cookbook-buttons">
                 <!--Show/Hide All & Create Buttons-->
-                
-                    <!--CookBook Display Buttons-->
-                    @foreach (var cookbook in Model)
-                    {
-                        <div class="col-sm-3 ">
-                            <button class="btn btn-block cookbook-name-button cb-button"
-                                    id="cb-@cookbook.CookBookId.ToString()-button"
-                                    value="@cookbook.CookBookId.ToString()">
-                                @cookbook.CookBookName
-                            </button>
-                        </div>
-                    }
-            </div>
-        </div>
-        <hr class="button-divider" />
-        <div class="recipe-container">
-            <div class="row">
+                <!--CookBook Display Buttons-->
                 @foreach (var cookbook in Model)
                 {
-                    <div class="row">
-                        @*CookBook Name Display Within Recipe Container*@
-                        <div class="row col-xs-12">
-                            <div class="col-xs-12 col-md-11 cookbook-name-display hidden cb-@cookbook.CookBookId.ToString()">
-                                <h4>@cookbook.CookBookName</h4>
-                                <hr />
-                            </div>
-                        </div>
-                        @*Render Individual Recipes*@
-                        @Html.Partial("~/Views/Recipes/RecipeDisplayPartial.cshtml", cookbook)
+                    <div class="col-sm-3 ">
+                        <button class="btn btn-block cookbook-name-button cb-button"
+                                id="cb-@cookbook.CookBookId.ToString()-button"
+                                value="@cookbook.CookBookId.ToString()">
+                            @cookbook.CookBookName
+                        </button>
                     </div>
-                    <br />
                 }
             </div>
         </div>
+        <hr class="button-divider" />
+            <div class="row">
+                @foreach (var cookbook in Model)
+                {
+                    <div class="row individual-cookbook-container">
+                        @*CookBook Name Display Within Recipe Container*@
+
+                        @*Render Individual Recipes*@
+                        @Html.Partial("~/Views/Recipes/RecipeDisplayPartial.cshtml", cookbook)
+                    </div>
+                }
+            </div>
     </div>
     <div id="screen-size-indicator"></div>
 </div>

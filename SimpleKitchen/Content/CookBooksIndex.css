@@ -8,6 +8,17 @@
 
 .btn-block{
     border-radius: 0%;
+    background: linear-gradient(to bottom right, lightgray, #222222);
+}
+
+.btn-block:hover{
+    background-color: darkgray;
+    color: white;
+}
+
+.btn-primary{
+    border-radius: 0%;
+    background: linear-gradient(to bottom right, lightgray, blue);
 }
 
 .col-centered{
@@ -30,20 +41,44 @@
     border-radius: 5%;
 }
 
+.cookbook-name-display {
+    margin: 0px;
+    padding: 0px;
+    border: 2px solid gray;
+    color: black;
+    background: linear-gradient(to bottom right, lightgray, blue);
+}
+
 .create-button{
     margin-top: 5px;
     margin-bottom: 5px;
-    float: right;
+    white-space: nowrap;
+    overflow: hidden;
     border-radius: 5%;
+    background: linear-gradient(to bottom right, lightgray, #222222);
 }
 
 .create-button:hover{
     background-color: darkgray;
+    color: white;
 }
 
 .create-button-text{
     white-space: normal;
     word-wrap: normal;
+}
+
+h1{
+    font-weight: bold;
+    font-size: 3.3em;
+    margin-top: 15px;
+    margin-bottom: -10px;
+}
+
+h4{
+    font-style: italic;
+    font-size: 2.2em;
+    margin-left: 15px;
 }
 
 .hide-individual-recipe{
@@ -56,9 +91,14 @@ hr {
     border-color: gray;
 }
 
+.individual-cookbook-container{
+    padding-right: 30px;
+    margin-left: 15px;
+}
+
 .individual-recipe{
     border-spacing: 5px;
-    border: 3px solid #264040;
+    border: 3px solid #222222;
     max-height: 244px;
     height: 244px;
     width: 100%;
@@ -74,6 +114,10 @@ hr {
     
 }
 
+.individual-top-button{
+    padding: 0px 2px 0px 2px;
+}
+
 .modal-backdrop{
     opacity: 1 !important;
 }
@@ -86,9 +130,9 @@ hr {
     border-bottom: 10px solid black;
     background-color: black;
     color: white;
-    padding-right: 22px;
-    margin-left: 15px;
+    
     width: 100%;
+    height: 100%;
 }
 .recipe-image{
     height: 100%;
@@ -135,6 +179,17 @@ hr {
     font-size: 1px;
 }
 
+.top-buttons{
+    margin-top: 15px;
+}
+
+.top-button-col{
+    margin-top: 0px;
+    padding: 0px;
+    border-spacing: 100px;
+}
+
+
 @media only screen and (max-width: 300px){
     body{
         margin-top: 40px !important;
@@ -143,19 +198,11 @@ hr {
     #screen-size-indicator{
         font-size: 2px;
     }
-    .individual-recipe-container{
-        margin-left: -10px;
-        margin-right: 22px;
-    }
 }
 
 @media only screen and (max-width: 767px) and (min-width: 430px) {
     #screen-size-indicator{
         font-size: 6px;
-    }
-    .individual-recipe-container{
-        margin-left: -10px;
-        margin-right: 22px;
     }
 }
 
@@ -166,10 +213,6 @@ hr {
     #screen-size-indicator{
         font-size: 3px;
     }
-    .individual-recipe-container{
-        margin-left: -10px;
-        margin-right: 22px;
-    }
 }
 
 @media only screen and (min-width: 769px) and (max-width: 992px){
@@ -179,18 +222,10 @@ hr {
     #screen-size-indicator{
         font-size: 4px;
     }
-    .individual-recipe-container{
-        margin-left: -10px;
-        margin-right: 22px;
-    }
 }
 
 @media only screen and (min-width: 993px){
     #screen-size-indicator{
         font-size: 5px;
-    }
-    .individual-recipe-container{
-        margin-left: 0px;
-        margin-right: 0px;
     }
 }

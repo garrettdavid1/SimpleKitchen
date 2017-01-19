@@ -2,7 +2,13 @@
 <link href="~/Content/CookBooksIndex.css" rel="stylesheet" />
 <link href="~/Content/RecipeDisplay.css" rel="stylesheet" />
 
-<div class="recipe-container">
+<div>
+    @if (Model.CookBookName != null)
+    {
+            <div class="row col-xs-12 col-md-11 cookbook-name-display hidden cb-@Model.CookBookId.ToString()">
+                <h4>@Model.CookBookName</h4>
+            </div>
+    }
     <div class="row">
         @foreach (var recipe in Model.Recipes)
         {
