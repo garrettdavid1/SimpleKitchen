@@ -24,7 +24,7 @@ namespace SimpleKitchen.Models
             SortedCookBooks.Insert(0, cookBooksInput[0]);
             foreach(var cookbook in SortedCookBooks)
             {
-                SortRecipes(cookbook.Recipes);
+                cookbook.Recipes = new EntitySorter().SortRecipesAndReturn(cookbook.Recipes).ToList();
             }
             return SortedCookBooks;
         }
