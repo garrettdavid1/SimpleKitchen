@@ -43,10 +43,13 @@
 
 .cookbook-name-display {
     margin: 0px;
+    border: 2px solid transparent;
+    border-right: none;
+    border-radius: 70px 0px 0px 70px;
     padding: 0px;
-    border: 2px solid gray;
-    color: black;
-    background: linear-gradient(to bottom right, lightgray, blue);
+    color: white;
+    width: 110%;
+    background: linear-gradient(to bottom right, #222222, transparent);
 }
 
 .create-button{
@@ -68,12 +71,7 @@
     word-wrap: normal;
 }
 
-h1{
-    font-weight: bold;
-    font-size: 3.3em;
-    margin-top: 15px;
-    margin-bottom: -10px;
-}
+
 
 h4{
     font-style: italic;
@@ -103,7 +101,8 @@ hr {
     height: 244px;
     width: 100%;
     padding: 5px;
-    background-color: white;
+    background: linear-gradient(to right, white, #222222);
+    /*background-color: white;*/
 }
 
 .individual-recipe-container{

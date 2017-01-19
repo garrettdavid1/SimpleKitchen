@@ -31,12 +31,6 @@ namespace SimpleKitchen.Controllers.APIControllers
         [HttpPut]
         public IHttpActionResult SaveRecipe(int id)
         {
-            //CookBook cookBook = await new CookBookRepository()
-            //    .GetUserCookBookWithEagerLoadedObjectsAsyncByName(
-            //        new CurrentUserIdRetriever()
-            //            .GetUserId(User.Identity as ClaimsIdentity),
-            //        "Saved Recipes");
-            //await new RecipeHandler().AddRecipeToCookBook(id, cookBook);
             string message = new RecipeHandler().AddRecipeToCookBookByName(id, "Saved Recipes",
                 new CurrentUserIdRetriever().GetUserId(User.Identity as ClaimsIdentity));
             return Ok(message);

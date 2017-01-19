@@ -6,11 +6,7 @@
     ViewBag.Title = "Public Recipes";
 }
 
-<h2>@ViewBag.Title</h2>
-
-<p>
-    @Html.ActionLink("Personal Recipes", "Index", "CookBooks", null, new { @class = "link-to-personal-recipes requires-authentication" })
-</p>
+<h1>@ViewBag.Title</h1>
 <hr />
 @Html.Partial("RecipeDisplayPartial")
 <div id="recipeModal" class="modal fade" role="dialog">
