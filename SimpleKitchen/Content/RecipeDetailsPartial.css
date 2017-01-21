@@ -1,10 +1,17 @@
 ﻿body {
     background-color: black;
     color: white;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 .col-centered{
     margin: auto;
+}
+
+.container-fluid{
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .dl-horizontal dt{

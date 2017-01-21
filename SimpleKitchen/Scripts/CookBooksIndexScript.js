@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    var baseUrl = "/api/RecipeTransfers/"
     var respondToSmallestScreenSize = function () {
         $(".create-recipe-container").addClass("hidden");
         $(".cookbook-button-wrapper").removeClass("col-xs-6").addClass("col-xs-12");
@@ -94,6 +95,22 @@
         $(".modal-body #recipe").val(recipe);
 
     });
+    $(".remove-recipe").click(function () {
+        var recipeId = $(this).attr("id");
+        var cookbookId = $(this).attr("class").split(' ').pop();
+        var data = JSON.stringify({ "id": recipeId, "cookbookId": cookbookId });
+            $.ajax({
+                url: baseUrl +"filter?rid=" + recipeId + '&cid=' + cookbookId,
+                type: "Put",
+                contentType: "application/json; charset=utf-8",
+                data: data,
+                success: function (result) {
+                    $(this).remove;
+                    alert(result);
+                }
+            });
+            $(this).parent().parent().remove();
+    })
     /*Responsive design based off font-size of element set from media queries to avoid having to resize
     the screen by default*/
     $(function () {

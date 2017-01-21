@@ -5,9 +5,9 @@
 <div>
     @if (Model.CookBookName != null)
     {
-            <div class="row col-xs-12 col-md-11 cookbook-name-display hidden cb-@Model.CookBookId.ToString()">
-                <h4>@Model.CookBookName</h4>
-            </div>
+        <div class="row col-xs-12 col-md-11 cookbook-name-display hidden cb-@Model.CookBookId.ToString()">
+            <h4>@Model.CookBookName</h4>
+        </div>
     }
     <div class="row">
         @foreach (var recipe in Model.Recipes)
@@ -16,38 +16,46 @@
                 <div class="btn individual-recipe col-centered">
                     @if (ViewBag.Title == "Public Recipes")
                     {
-                        <button type="button" href="~/" id="@recipe.RecipeId" class="btn btn-default glyphicon glyphicon-floppy-disk save-recipe requires-authentication"></button>
+                        <button type="button" href="~/" id="@recipe.RecipeId" class="btn btn-default glyphicon glyphicon-plus save-recipe requires-authentication"></button>
                     }
-                        <button type="button" class="btn btn-danger btn-xs hide-individual-recipe">Hide</button>
-                <!--Recipe Image-->
-                        @if (recipe.ImageReference != null)
-                        {
-                            <div class="recipe-image" style="background-image: url(@recipe.ImageReference)"></div>
-                        }
-                        else
-                        {
-                            <div class="row col-centered">
-                                <div class="recipe-image-missing">
-                                    <p class="glyphicon glyphicon-camera"></p>
-                                </div>
+                    <button type="button" class="btn btn-danger btn-xs hide-individual-recipe">Hide</button>
+                    <!--Recipe Image-->
+                    @if (recipe.ImageReference != null)
+                    {
+                        <div class="recipe-image" style="background-image: url(@recipe.ImageReference)"></div>
+                    }
+                    else
+                    {
+                        <div class="row col-centered">
+                            <div class="recipe-image-missing">
+                                <p class="glyphicon glyphicon-camera"></p>
                             </div>
-                        }
-                        <hr class="recipe-image-name-divider" />
-                <!--Recipe Name-->
-                        <div class="row recipe-name">
-                            <p class="recipe-text">@recipe.RecipeName</p>
                         </div>
-                <!--Recipe Detials Button-->
-                        <button type="button"
-                                data-id="@recipe.RecipeId"
-                                class="btn btn-default recipe-details"
-                                data-toggle="modal"
-                                data-target="#recipeModal"
-                                href="~/Recipes/Details/@recipe.RecipeId">
-                            Details
-                        </button>
+                    }
+                    <hr class="recipe-image-name-divider" />
+                    <!--Recipe Name-->
+                    <div class="row recipe-name">
+                        <p class="recipe-text">@recipe.RecipeName</p>
                     </div>
-                </div>
+                    <!--Recipe Details Button-->
+                    <button type="button"
+                            data-id="@recipe.RecipeId"
+                            class="btn btn-default recipe-details"
+                            data-toggle="modal"
+                            data-target="#recipeModal"
+                            href="~/Recipes/Details/@recipe.RecipeId">
+                        Details
+                    </button>
+                    @if (recipe.CookBooksContainingRecipe.Count < 2)
+                    {
+                        <button class="btn btn-danger delete-recipe" onclick="window.location.href='Recipes/Delete/@recipe.RecipeId.ToString()'">Remove</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-danger remove-recipe @Model.CookBookId.ToString()" id="@recipe.RecipeId.ToString()">Remove</button>
                     }
                 </div>
             </div>
+        }
+    </div>
+</div>

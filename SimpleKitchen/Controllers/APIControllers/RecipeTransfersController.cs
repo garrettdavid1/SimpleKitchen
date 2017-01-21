@@ -2,6 +2,7 @@
 using SimpleKitchen.Models;
 using SimpleKitchen.Models.Data_Access;
 using SimpleKitchen.Models.Repositories;
+using SimpleKitchen.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,16 @@ namespace SimpleKitchen.Controllers.APIControllers
             Recipe recipe = await new RecipeRepository().GetAsync(recipeId);
             return Ok(recipe);
         }
+
+        [Route("api/RecipeTransfers/filter/{rid?}/{cid?}")]
+        [HttpPut]
+        public IHttpActionResult RemoveRecipeFromCookBook(int rid, int cid)
+        {
+            string result = new RecipeHandler().RemoveRecipeFromCookBook(rid, cid);
+            return Ok(result);
+        }
+
+        [Route("api/RecipeTransfers/{id}")]
         [HttpPut]
         public IHttpActionResult SaveRecipe(int id)
         {

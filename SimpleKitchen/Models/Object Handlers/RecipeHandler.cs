@@ -35,6 +35,32 @@ namespace SimpleKitchen.Models
             return await repository.SaveChangesAsync();
         }
 
+        //Returns success string to be displayed to user
+        internal string RemoveRecipeFromCookBook(int rId, int cId)
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+            CookBook cookBook = context
+                .CookBooks
+                .Where(c => c.CookBookId == cId)
+                .Include(o => o.Owner)
+                .Include(r => r.Recipes)
+                .SingleOrDefault();
+            Recipe recipe = context
+                .Recipes
+                .Where(r => r.RecipeId == rId)
+                .Include(c => c.CookBooksContainingRecipe)
+                .Include(o => o.Owner)
+                .Single();
+            recipe.CookBooksContainingRecipe.Remove(cookBook);
+            cookBook.Recipes.Remove(recipe);
+            context.Entry(cookBook).State = EntityState.Modified;
+            context.Entry(recipe).State = EntityState.Modified;
+            string message = recipe.RecipeName + " removed!";
+            context.SaveChanges();
+            context.Dispose();
+            return message;
+        }
+
         internal async Task<int> AddRecipeToCookBook(int recipeId, CookBook cookBook)
         {
             Recipe recipe = await repository.GetAsync(recipeId);
