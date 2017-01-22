@@ -100,7 +100,7 @@
         var cookbookId = $(this).attr("class").split(' ').pop();
         var data = JSON.stringify({ "id": recipeId, "cookbookId": cookbookId });
             $.ajax({
-                url: baseUrl +"filter?rid=" + recipeId + '&cid=' + cookbookId,
+                url: baseUrl +"Remove/?rid=" + recipeId + '&cid=' + cookbookId,
                 type: "Put",
                 contentType: "application/json; charset=utf-8",
                 data: data,

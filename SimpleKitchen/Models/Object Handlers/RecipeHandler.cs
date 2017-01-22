@@ -14,9 +14,11 @@ namespace SimpleKitchen.Models
     public class RecipeHandler
     {
         RecipeRepository repository;
+        ApplicationDbContext context;
         public RecipeHandler()
         {
             repository = new RecipeRepository();
+            context = new ApplicationDbContext();
         }
 
         public async Task<int> CreateAndSaveRecipe(RecipesCreateViewModel viewModel, string userId
@@ -36,21 +38,10 @@ namespace SimpleKitchen.Models
         }
 
         //Returns success string to be displayed to user
-        internal string RemoveRecipeFromCookBook(int rId, int cId)
+        internal string RemoveRecipeFromCookBook(int recipeId, int cookbookId)
         {
-            ApplicationDbContext context = new ApplicationDbContext();
-            CookBook cookBook = context
-                .CookBooks
-                .Where(c => c.CookBookId == cId)
-                .Include(o => o.Owner)
-                .Include(r => r.Recipes)
-                .SingleOrDefault();
-            Recipe recipe = context
-                .Recipes
-                .Where(r => r.RecipeId == rId)
-                .Include(c => c.CookBooksContainingRecipe)
-                .Include(o => o.Owner)
-                .Single();
+            CookBook cookBook = GetCookbookById(cookbookId, context);
+            Recipe recipe = GetRecipeById(recipeId, context);
             recipe.CookBooksContainingRecipe.Remove(cookBook);
             cookBook.Recipes.Remove(recipe);
             context.Entry(cookBook).State = EntityState.Modified;
@@ -61,39 +52,20 @@ namespace SimpleKitchen.Models
             return message;
         }
 
-        internal async Task<int> AddRecipeToCookBook(int recipeId, CookBook cookBook)
+        internal string AddRecipeToCookBookById(int recipeId, int cookbookId)
         {
-            Recipe recipe = await repository.GetAsync(recipeId);
-            cookBook.Recipes.Add(recipe);
-            repository.AttachCookBook(cookBook);
-            recipe.CookBooksContainingRecipe.Add(cookBook);
-            repository.Update(recipe);
-            return await repository.SaveChangesAsync();
+            return AddRecipeToCookBook(
+                GetRecipeById(recipeId, context),
+                GetCookbookById(cookbookId, context),
+                context);
         }
 
         internal string AddRecipeToCookBookByName(int recipeId, string cookBookName, string userId)
         {
-            ApplicationDbContext context = new ApplicationDbContext();
-            CookBook cookBook = context
-                .CookBooks
-                .Where(c => c.CookBookName == cookBookName && c.OwnerId == userId)
-                .Include(o => o.Owner)
-                .Include(r => r.Recipes)
-                .SingleOrDefault();
-            Recipe recipe = context
-                .Recipes
-                .Where(r => r.RecipeId == recipeId)
-                .Include(c => c.CookBooksContainingRecipe)
-                .Include(o => o.Owner)
-                .Single();
-            recipe.CookBooksContainingRecipe.Add(cookBook);
-            cookBook.Recipes.Add(recipe);
-            context.Entry(cookBook).State = EntityState.Modified;
-            context.Entry(recipe).State = EntityState.Modified;
-            string message = recipe.RecipeName + " saved!";
-            context.SaveChanges();
-            context.Dispose();
-            return message;
+            return AddRecipeToCookBook(
+                GetRecipeById(recipeId, context), 
+                GetCookBookByNameAndUserId(cookBookName, userId, context), 
+                context);
         }
 
         public async Task<int> EditAndSaveRecipe(RecipesEditViewModel viewModel)
@@ -135,6 +107,47 @@ namespace SimpleKitchen.Models
                      ContentType == "image/gif" ||
                      ContentType == "image/x-png" ||
                      ContentType == "image/png");
+        }
+
+        internal string AddRecipeToCookBook(Recipe recipe, CookBook cookbook, ApplicationDbContext context)
+        {
+            recipe.CookBooksContainingRecipe.Add(cookbook);
+            cookbook.Recipes.Add(recipe);
+            context.Entry(cookbook).State = EntityState.Modified;
+            context.Entry(recipe).State = EntityState.Modified;
+            context.SaveChanges();
+            context.Dispose();
+            return recipe.RecipeName + " saved!";
+        }
+
+        public Recipe GetRecipeById(int recipeId, ApplicationDbContext context)
+        {
+            return context
+                .Recipes
+                .Where(r => r.RecipeId == recipeId)
+                .Include(c => c.CookBooksContainingRecipe)
+                .Include(o => o.Owner)
+                .Single();
+        }
+
+        public CookBook GetCookbookById(int cookbookId, ApplicationDbContext context)
+        {
+            return context
+                .CookBooks
+                .Where(c => c.CookBookId == cookbookId)
+                .Include(o => o.Owner)
+                .Include(r => r.Recipes)
+                .SingleOrDefault();
+        }
+
+        public CookBook GetCookBookByNameAndUserId(string cookbookName, string userId, ApplicationDbContext context)
+        {
+            return context
+                .CookBooks
+                .Where(c => c.CookBookName == cookbookName && c.OwnerId == userId)
+                .Include(o => o.Owner)
+                .Include(r => r.Recipes)
+                .SingleOrDefault();
         }
     }
 }

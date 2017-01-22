@@ -147,19 +147,6 @@ namespace SimpleKitchen.Controllers
             await repository.SaveChangesAsync();
             return RedirectToAction("Index", "CookBooks");
         }
-        public async Task<JsonResult> SaveRecipe(string recipeIdString)
-        {
-            int recipeId = int.Parse(recipeIdString.Substring(3));
-            RecipeHandler recipeHandler = new RecipeHandler();
-            await recipeHandler.AddRecipeToCookBook(
-                recipeId, 
-                new CookBookRetriever()
-                    .GetUserCookBookByName(new CurrentUserIdRetriever()
-                    .GetUserId(User.Identity as ClaimsIdentity), "Saved Recipes")
-                );
-            bool Succeeded = true;
-            return Json(Succeeded);
-        }
 
         protected override void Dispose(bool disposing)
         {

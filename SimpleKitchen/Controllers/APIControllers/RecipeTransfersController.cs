@@ -30,7 +30,7 @@ namespace SimpleKitchen.Controllers.APIControllers
             return Ok(recipe);
         }
 
-        [Route("api/RecipeTransfers/filter/{rid?}/{cid?}")]
+        [Route("api/RecipeTransfers/Remove/{rid?}/{cid?}")]
         [HttpPut]
         public IHttpActionResult RemoveRecipeFromCookBook(int rid, int cid)
         {
@@ -46,5 +46,14 @@ namespace SimpleKitchen.Controllers.APIControllers
                 new CurrentUserIdRetriever().GetUserId(User.Identity as ClaimsIdentity));
             return Ok(message);
         }
+
+        [Route("api/RecipeTransfers/Add/{rid?}/{cid?}")]
+        [HttpPut]
+        public IHttpActionResult AddRecipeToCookBook(int rid, int cid)
+        {
+            string result = new RecipeHandler().RemoveRecipeFromCookBook(rid, cid);
+            return Ok(result);
+        }
+
     }
 }
