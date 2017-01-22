@@ -42,18 +42,18 @@ namespace SimpleKitchen.Controllers.APIControllers
         [HttpPut]
         public IHttpActionResult SaveRecipe(int id)
         {
-            string message = new RecipeHandler().AddRecipeToCookBookByName(id, "Saved Recipes",
+            string message = new RecipeHandler().AddRecipeToCookBook(id, "Saved Recipes",
                 new CurrentUserIdRetriever().GetUserId(User.Identity as ClaimsIdentity));
             return Ok(message);
         }
 
-        [Route("api/RecipeTransfers/Add/{rid?}/{cid?}")]
+        [Route("api/RecipeTransfers/Add/{recipeId?}/{cookbookName?}")]
         [HttpPut]
-        public IHttpActionResult AddRecipeToCookBook(int rid, int cid)
+        public IHttpActionResult AddRecipeToCookBookByName(int recipeId, string cookbookName)
         {
-            string result = new RecipeHandler().RemoveRecipeFromCookBook(rid, cid);
-            return Ok(result);
+            //AddRecipeToCookBookById method returns success/failure string.
+            return Ok(new RecipeHandler().AddRecipeToCookBook(recipeId, cookbookName,
+                new CurrentUserIdRetriever().GetUserId(User.Identity as ClaimsIdentity)));
         }
-
     }
 }

@@ -111,6 +111,21 @@
             });
             $(this).parent().parent().remove();
     })
+    $(".add-to-menu").click(function () {
+        var recipeId = $(this).attr("id");
+        var cookbookName = "MealPlan";
+        var data = JSON.stringify({ "recipeId": recipeId, "cookbookName": cookbookName });
+        $.ajax({
+            url: baseUrl + "Add/?recipeId=" + recipeId + "&cookbookName=" + cookbookName,
+            type: "Put",
+            contentType: "application/json; charset=utf-8",
+            data: data,
+            success: function (result) {
+                $(this).remove;
+                alert(result);
+            }
+        });
+    })
     /*Responsive design based off font-size of element set from media queries to avoid having to resize
     the screen by default*/
     $(function () {

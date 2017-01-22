@@ -163,10 +163,16 @@ namespace SimpleKitchen.Controllers
                             CookBookName = "My Recipes",
                             CookBookDescription = "My Recipes",
                             IsDeletable = false
-                    },
+                        },
                         new CookBook() {
                             CookBookName = "Saved Recipes",
                             CookBookDescription = "Saved Recipes",
+                            IsDeletable = false
+                        }, 
+                        new CookBook()
+                        {
+                            CookBookName = "MealPlan",
+                            CookBookDescription = "", 
                             IsDeletable = false
                         }
                     }

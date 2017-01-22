@@ -27,6 +27,7 @@
                     <li class="unnecessary-nav">@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Public Recipes", "PublicRecipes", "Recipes")</li>
                     <li class="requires-authentication">@Html.ActionLink("My CookBooks", "Index", "CookBooks")</li>
+                    <li class="requires-authentication">@Html.ActionLink("Menu", "Menu", "CookBooks")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,7 +35,7 @@
     </div>
     <div class="container-fluid body-content">
         @RenderBody()
-        <hr />
+        <hr class="footer-divider"/>
         <footer>
             <p>&copy; @DateTime.Now.Year - Simple Kitchen</p>
         </footer>

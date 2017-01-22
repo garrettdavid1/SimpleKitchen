@@ -21,8 +21,7 @@ namespace SimpleKitchen.Models
             context = new ApplicationDbContext();
         }
 
-        public async Task<int> CreateAndSaveRecipe(RecipesCreateViewModel viewModel, string userId
-            )
+        internal async Task<int> CreateAndSaveRecipe(RecipesCreateViewModel viewModel, string userId)
         {
             HttpPostedFileBase file = viewModel.UploadedFile;
             if(UploadedFileExists(file)){
@@ -52,7 +51,7 @@ namespace SimpleKitchen.Models
             return message;
         }
 
-        internal string AddRecipeToCookBookById(int recipeId, int cookbookId)
+        internal string AddRecipeToCookBook(int recipeId, int cookbookId)
         {
             return AddRecipeToCookBook(
                 GetRecipeById(recipeId, context),
@@ -60,7 +59,7 @@ namespace SimpleKitchen.Models
                 context);
         }
 
-        internal string AddRecipeToCookBookByName(int recipeId, string cookBookName, string userId)
+        internal string AddRecipeToCookBook(int recipeId, string cookBookName, string userId)
         {
             return AddRecipeToCookBook(
                 GetRecipeById(recipeId, context), 
@@ -111,13 +110,23 @@ namespace SimpleKitchen.Models
 
         internal string AddRecipeToCookBook(Recipe recipe, CookBook cookbook, ApplicationDbContext context)
         {
-            recipe.CookBooksContainingRecipe.Add(cookbook);
-            cookbook.Recipes.Add(recipe);
-            context.Entry(cookbook).State = EntityState.Modified;
-            context.Entry(recipe).State = EntityState.Modified;
-            context.SaveChanges();
-            context.Dispose();
-            return recipe.RecipeName + " saved!";
+            string message = recipe.RecipeName + " could not be saved to " + 
+                cookbook.CookBookName + " at this time.";
+            try
+            {
+                recipe.CookBooksContainingRecipe.Add(cookbook);
+                cookbook.Recipes.Add(recipe);
+                context.Entry(cookbook).State = EntityState.Modified;
+                context.Entry(recipe).State = EntityState.Modified;
+                context.SaveChanges();
+                context.Dispose();
+                return recipe.RecipeName + " saved!";
+            }
+            catch (Exception e)
+            {
+                return message;
+            }
+            
         }
 
         public Recipe GetRecipeById(int recipeId, ApplicationDbContext context)

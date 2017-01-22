@@ -1,0 +1,72 @@
+﻿.btn-danger{
+    font-size: 10px;
+    padding: 0px;
+    float: right;
+    border-radius: 0px;
+}
+
+.btn-primary{
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+}
+
+.day-container{
+    border: 1px solid gray;
+    height: 300px;
+    display: inline-block;
+    vertical-align: top;
+    float: none;
+    color: black;
+    background-color: white;
+}
+
+.day-name{
+    line-height: 40px;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    font-weight: bolder;
+}
+
+.day-name-divider{
+    border-color: black;
+    margin-top: 0px;
+}
+
+.individual-recipe{
+    height: 180px;
+}
+
+.individual-recipe-container{
+    display: inline-block;
+    vertical-align: top;
+    float: none;
+}
+
+.instructions{
+    height: 80px;
+    font-weight: bold;
+}
+
+.instructions-container{
+    color: white;
+    margin-top: 40px;
+}
+
+.row-fluid{
+     white-space: nowrap;
+     overflow-x: scroll;
+     height: 201px;
+     width: 100%; 
+     border: 1px solid black;
+}
+
+.shopping-list-button{
+    height: 80px;
+    margin-left: -15px;
+}
+
+.week{
+    height: 320px;
+}

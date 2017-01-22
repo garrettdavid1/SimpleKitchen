@@ -13,13 +13,12 @@ namespace SimpleKitchen.Models.Repositories
         public async Task<List<CookBook>> GetUserCookBooksWithEagerLoadedObjectsAsync(ClaimsIdentity identity)
         {
              string currentUserId = new CurrentUserIdRetriever().GetUserId(identity);
-             
              return EntitySorter.SortCookBooks(await context
-                .CookBooks
-                .Where(i => i.OwnerId == currentUserId)
-                .Include(r => r.Recipes)
-                .Include(o => o.Owner)
-                .ToListAsync());
+               .CookBooks
+               .Where(i => i.OwnerId == currentUserId)
+               .Include(r => r.Recipes)
+               .Include(o => o.Owner)
+               .ToListAsync());
         }
 
         public async Task<CookBook> GetCookBookWithEagerLoadedObjectsAsync(int id)

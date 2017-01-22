@@ -51,5 +51,17 @@ namespace SimpleKitchen.Models
             repository.Update(cookBook);
             return await repository.SaveChangesAsync();
         }
+
+        internal List<CookBook> RemoveCookBookFromList(List<CookBook> cookBooks, string cookbookName)
+        {
+            foreach (var cookBook in cookBooks.ToList())
+            {
+                if (cookBook.CookBookName == "MealPlan")
+                {
+                    cookBooks.Remove(cookBook);
+                }
+            }
+            return (cookBooks);
+        }
     }
 }

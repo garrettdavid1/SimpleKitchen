@@ -26,7 +26,20 @@ namespace SimpleKitchen.Controllers
         
         public async Task<ActionResult> Index()
         {
-            return View(await repository.GetUserCookBooksWithEagerLoadedObjectsAsync(User.Identity as ClaimsIdentity));
+            return View(new CookBookHandler()
+                .RemoveCookBookFromList(
+                    await repository
+                        .GetUserCookBooksWithEagerLoadedObjectsAsync(
+                            User.Identity as ClaimsIdentity), 
+                    "MealPlan"));
+        }
+
+        public async Task<ActionResult> Menu()
+        {
+            ViewBag.Days = new List<string>() { "Sunday", "Monday", "Tuesday",
+                "Wednesday", "Thursday", "Friday", "Saturday"};
+            return View(await repository.GetUserCookBookWithEagerLoadedObjectsAsyncByName(
+                new CurrentUserIdRetriever().GetUserId(User.Identity as ClaimsIdentity), "MealPlan"));
         }
         
         [AllowAnonymous]
