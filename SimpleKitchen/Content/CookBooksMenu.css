@@ -11,14 +11,23 @@
     font-weight: bold;
 }
 
+.recipes{
+    float: right;
+}
+
+.daily-recipes{
+    height: 257px;
+}
+
 .day-container{
     border: 1px solid gray;
-    height: 300px;
     display: inline-block;
     vertical-align: top;
     float: none;
     color: black;
     background-color: white;
+    overflow-y: scroll;
+    padding: 0px;
 }
 
 .day-name{
@@ -30,8 +39,8 @@
 }
 
 .day-name-divider{
-    border-color: black;
     margin-top: 0px;
+    margin-bottom: 2px;
 }
 
 .individual-recipe{
@@ -52,6 +61,7 @@
 .instructions-container{
     color: white;
     margin-top: 40px;
+    float: left;
 }
 
 .row-fluid{
@@ -69,4 +79,11 @@
 
 .week{
     height: 320px;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 1000px) {
+    .unnecessary-nav{
+        visibility: hidden;
+    }
 }

@@ -33,4 +33,22 @@
             }
         })
     });
+    //Remove recipe from cookbook & remove recipe-container from DOM
+    $(".remove-recipe").click(function () {
+        var baseUrl = "/api/RecipeTransfers/"
+        var recipeId = $(this).attr("id");
+        var cookbookId = $(this).attr("class").split(' ').pop();
+        var data = JSON.stringify({ "id": recipeId, "cookbookId": cookbookId });
+        $.ajax({
+            url: baseUrl + "Remove/?rid=" + recipeId + '&cid=' + cookbookId,
+            type: "Put",
+            contentType: "application/json; charset=utf-8",
+            data: data,
+            success: function (result) {
+                $(this).remove;
+                alert(result);
+            }
+        });
+        $(this).parent().parent().remove();
+    })
 });
