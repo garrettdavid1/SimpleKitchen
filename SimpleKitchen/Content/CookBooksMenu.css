@@ -26,12 +26,11 @@
     float: none;
     color: black;
     background-color: white;
-    overflow-y: scroll;
     padding: 0px;
 }
 
 .day-name{
-    line-height: 40px;
+    line-height: 37px;
     padding: 0px;
     margin: 0px;
     border: 0px;
