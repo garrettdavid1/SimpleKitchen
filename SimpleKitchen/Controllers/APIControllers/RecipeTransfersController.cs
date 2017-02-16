@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -54,6 +55,23 @@ namespace SimpleKitchen.Controllers.APIControllers
             //AddRecipeToCookBookById method returns success/failure string.
             return Ok(new RecipeHandler().AddRecipeToCookBook(recipeId, cookbookName,
                 new CurrentUserIdRetriever().GetUserId(User.Identity as ClaimsIdentity)));
+        }
+
+        [Route("api/RecipeTransfers/GenShoppingList")]
+        [HttpPost]
+        public IHttpActionResult GenShoppingList(int[] recipeIdArray)
+        {
+            RecipeRepository repository = new RecipeRepository();
+            StringBuilder IngredientNames = new StringBuilder();
+            Recipe recipe;
+            foreach(var id in recipeIdArray)
+            {
+                recipe = repository.Get(id);
+                IngredientNames.Append(recipe.Ingredients.Replace("\n", ""));
+                IngredientNames.Append("\n");
+            }
+
+            return Ok(IngredientNames.ToString());
         }
     }
 }

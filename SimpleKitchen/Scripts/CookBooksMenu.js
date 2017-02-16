@@ -43,7 +43,29 @@ function drop(ev) {
     }
 }
 $(document).ready(function () {
+    function getRecipeId(idString) {
+        return parseInt(idString.split("").pop());
+    }
     $("footer").remove();
     $(".footer-divider").remove();
     
+    $("#generate-list").click(function () {
+        var recipeHTMLCollection = document.getElementsByClassName("daily-recipe");
+        var recipeArray = Array.prototype.slice.call(recipeHTMLCollection);
+        var recipeIdArray = [recipeArray.length];
+        for (var i = 0; i < recipeHTMLCollection.length; i++) {
+            recipeIdArray[i] = getRecipeId(recipeArray[i].id);
+            console.log(recipeIdArray[i]);
+        }
+        var baseUrl = "/api/RecipeTransfers/"
+        $.ajax({
+            url: baseUrl + "GenShoppingList",
+            type: "Post",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(recipeIdArray),
+            success: function (ingredients) {
+                alert(ingredients);
+            }
+        });
+    });
 })
